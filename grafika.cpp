@@ -506,3 +506,10 @@ void obdelnik(int x1, int y1, int x2, int y2)
 	rect.h = y2 - y1 + 1;
 	SDL_FillRect(obrazovka->screen, &rect, pixel);
 }
+void kruh(int x, int y, int r){
+for(int z = 0;z <r;z++){
+    cara(x+z,y,x+z,y-sqrt(r*r-z*z));
+    cara(x-z,y,x-z,y-sqrt(r*r-z*z));
+    cara(x-z,y,x-z,y+sqrt(r*r-z*z));
+    cara(x+z,y,x+z,y+sqrt(r*r-z*z));
+}}
