@@ -85,7 +85,7 @@ void Krajina::kresli()
 
     if(typ == 0)
     {
-        barva(ZELENA);
+        barva(65,152,10);
     kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
     }
     else
