@@ -1,3 +1,4 @@
+#include "strela.h"
 #include <SDL/SDL.h>
 #include "pozadi.h"
 #include "grafika.h"
@@ -10,7 +11,7 @@ int main(int argc, char** argv)
 {
 	Obrazovka* obrazovka = Obrazovka::instance();
 	obrazovka->inicializuj(800, 600, 0, 0);
-
+	strela base;
 	Krajina k;
 	Pozadi pozadi;
 	int t2;
@@ -24,6 +25,7 @@ int main(int argc, char** argv)
 		//srand(1258);
 		pozadi.pohni();
 		pozadi.kresli();
+		base.kresli(200,100);
 		k.kresli();
 
 		/* konec kresleni */
