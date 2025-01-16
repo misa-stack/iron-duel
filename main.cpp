@@ -13,8 +13,11 @@ int main(int argc, char** argv)
 
 	Krajina k;
 	Pozadi pozadi;
+	int t2;
+	int t1;
 	while(1)
 	{
+		t1 = SDL_GetTicks();
 		obrazovka->smaz();
 		
 		/* zacatek kresleni */
@@ -35,9 +38,13 @@ int main(int argc, char** argv)
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym)
 				{
-				case SDLK_u:
+				case SDLK_p:
 					pozadi.zmenu();
 					break;
+				case SDLK_k:
+					k.zmena();
+					break;
+
 				case SDLK_ESCAPE:
 					SDL_Quit();
 					return 0;
@@ -45,5 +52,9 @@ int main(int argc, char** argv)
 				break;
 			}
 		}
+		t2 = SDL_GetTicks();
+		int dt = t2 - t1;
+		if (17 - dt > 0)SDL_Delay(17 -dt);
 	}
 }
+

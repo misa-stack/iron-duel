@@ -5,8 +5,8 @@
 
 Krajina::Krajina()
 {
-    srand(time(NULL));
- typ = rand()%2;
+    srand(time (NULL));
+ typ = 0;
 
 }
 
@@ -57,6 +57,26 @@ void Krajina::kopec(int x1, int y1, int x2, int y2)
         kopec(xs,ys,x2,y2);
     }
 }
+void Krajina::poust(int x1, int y1, int x2, int y2){
+	{
+		int rozptyl = (x2 - x1)/5;
+	    int xs = (x1 + x2)/2;
+	    int ys = (y1 + y2)/2+ nahoda(rozptyl) - rozptyl/2;
+
+
+	    if(x2 - x1 < 5)
+	    {
+
+		mojecara(x1,y1,xs,ys);
+		mojecara(xs,ys,x2,y2);
+	    }
+	    else
+	    {
+		poust(x1,y1,xs,ys);
+		poust(xs,ys,x2,y2);
+	    }
+	}
+}
 void Krajina::hory(int x1, int y1, int x2, int y2)
 {
     int rozptyl = (x2 - x1);
@@ -88,10 +108,24 @@ void Krajina::kresli()
         barva(65,152,10);
     kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
     }
-    else
+    if (typ ==1)
     {
         barva(130,130,130);
         hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
     }
+    if (typ == 2){
+barva(223,226,127);
+poust(0,nahoda(400)+200,799,nahoda(400)+200);
+    }
 
 }
+void Krajina::zmena(){
+	typ++;
+	if( typ == 3)
+		typ = 0;
+
+
+
+
+}
+

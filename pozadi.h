@@ -8,15 +8,15 @@
 class Pozadi
 {
 public:
-    Pozadi();
-    int u;
-    int nahx[20];
-    int nahy[20];
-    int svitivost;
-    float svitivostkometa;
-    void kresli();
-    void pohni();
-    void zmenu();
+	Pozadi();
+	int u;
+	int nahx[20];
+	int nahy[20];
+	int svitivost;
+	float svitivostkometa;
+	void kresli();
+	void pohni();
+	void zmenu();
 };
 
 #endif // POZADI_H
