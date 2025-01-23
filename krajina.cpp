@@ -117,6 +117,10 @@ srand(13);
 barva(223,226,127);
 poust(0,nahoda(400)+200,799,nahoda(400)+200);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5a144b32d30f35aeff9a769ce825766c6cf7e6f7
 	srand(13);
 	if(typ == 0)
 	{
