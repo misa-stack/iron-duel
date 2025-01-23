@@ -47,7 +47,9 @@ int main(int argc, char** argv)
 				case SDLK_k:
 					k.zmena();
 					break;
-
+				case SDLK_s:
+					base.zmena();
+					break;
 				case SDLK_ESCAPE:
 					SDL_Quit();
 					return 0;
