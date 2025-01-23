@@ -102,7 +102,6 @@ void Krajina::hory(int x1, int y1, int x2, int y2)
 
 void Krajina::kresli()
 {
-<<<<<<< HEAD
 srand(13);
     if(typ == 0)
     {
@@ -118,7 +117,7 @@ srand(13);
 barva(223,226,127);
 poust(0,nahoda(400)+200,799,nahoda(400)+200);
     }
-=======
+
 	srand(13);
 	if(typ == 0)
 	{
@@ -134,7 +133,6 @@ poust(0,nahoda(400)+200,799,nahoda(400)+200);
 		barva(223,226,127);
 		poust(0,nahoda(400)+200,799,nahoda(400)+200);
 	}
->>>>>>> 768905395bbbb72aa1f5db95aaa4913164c9d043
 
 }
 void Krajina::zmena(){
