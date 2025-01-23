@@ -102,7 +102,7 @@ void Krajina::hory(int x1, int y1, int x2, int y2)
 
 void Krajina::kresli()
 {
-
+srand(13);
     if(typ == 0)
     {
         barva(65,152,10);
