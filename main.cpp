@@ -3,6 +3,7 @@
 #include "pozadi.h"
 #include "grafika.h"
 #include "krajina.h"
+#include "vybuch.h"
 void kometa(int x, int y,int r){
 	kruh(x,y,r);
 
@@ -12,6 +13,7 @@ int main(int argc, char** argv)
 	Obrazovka* obrazovka = Obrazovka::instance();
 	obrazovka->inicializuj(800, 600, 0, 0);
 	strela base(100,200);
+    vybuch v(100,200);
 	Krajina k;
 	Pozadi pozadi;
 	//int t2;
@@ -28,10 +30,12 @@ int main(int argc, char** argv)
 		base.kresli();
 		base.pohni();
 		k.kresli();
+        v.kresli();
+        v.rk++;
 
 		/* konec kresleni */
 		obrazovka->aktualizuj();
-		SDL_Delay(500);
+    //	SDL_Delay(500);
 		
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
