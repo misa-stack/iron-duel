@@ -120,6 +120,7 @@ poust(0,nahoda(400)+200,800,nahoda(400)+200);
 
 
 
+
 	srand(13);
 	if(typ == 0)
 	{
