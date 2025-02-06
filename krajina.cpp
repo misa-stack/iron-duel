@@ -106,35 +106,34 @@ srand(13);
     if(typ == 0)
     {
         barva(65,152,10);
-    kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
+    kopec(0, nahoda(400) + 200,800, nahoda(400) + 200);
     }
     if (typ ==1)
     {
         barva(130,130,130);
-        hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
+	hory(0, nahoda(400) + 200,800, nahoda(400) + 200);
     }
     if (typ == 2){
 barva(223,226,127);
-poust(0,nahoda(400)+200,799,nahoda(400)+200);
+poust(0,nahoda(400)+200,800,nahoda(400)+200);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 5a144b32d30f35aeff9a769ce825766c6cf7e6f7
+
+
 	srand(13);
 	if(typ == 0)
 	{
 		barva(65,152,10);
-		kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
+		kopec(0, nahoda(400) + 200,800, nahoda(400) + 200);
 	}
 	if (typ ==1)
 	{
 		barva(130,130,130);
-		hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
+		hory(0, nahoda(400) + 200,800, nahoda(400) + 200);
 	}
 	if (typ == 2){
 		barva(223,226,127);
-		poust(0,nahoda(400)+200,799,nahoda(400)+200);
+		poust(0,nahoda(400)+200,800,nahoda(400)+200);
 	}
 
 }

@@ -1,11 +1,11 @@
-#ifndef STRELA_H
-#define STRELA_H
+#ifndef RAKETA_H
+#define RAKETA_H
 
 
-class strela
+class raketa
 {
 public:
-	strela(float x,float y);
+	raketa(float x,float y);
 	float vy;
 	float vx;
 	float ay;
@@ -13,7 +13,6 @@ public:
 	float y;
 	void kresli();
 	void pohni();
-
 };
 
-#endif // STRELA_H
+#endif // RAKETA_H
