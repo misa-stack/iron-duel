@@ -6,7 +6,7 @@
 
 vybuch::vybuch(int x, int y): xk(x), yk(y)
 {
-rk = 1;
+rk = 0;
 }
 
 void vybuch::kresli()

@@ -14,7 +14,7 @@ int main(int argc, char** argv)
 	Obrazovka* obrazovka = Obrazovka::instance();
 	obrazovka->inicializuj(800, 600, 0, 0);
 	strela base(100,200);
-    vybuch v(100,200);
+	vybuch v(100,200);
 	Krajina k;
 	Pozadi pozadi;
 	raketa rychla(100,200);
@@ -66,17 +66,14 @@ int main(int argc, char** argv)
 			zbranraketa.kresli();
 		}
 
+		v.kresli();
+		v.rk++;
 		/* konec kresleni */
 		obrazovka->aktualizuj();
 		//SDL_Delay(500);
 
-        v.kresli();
-        v.rk++;
 
-		/* konec kresleni */
-		obrazovka->aktualizuj();
-    //	SDL_Delay(500);
-		
+
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
