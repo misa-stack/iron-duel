@@ -11,6 +11,9 @@ public:
 	float ay;
 	float x;
 	float y;
+	float sx;
+	float sy;
+	float natoceni;
 	void kresli();
 	void pohni();
 };

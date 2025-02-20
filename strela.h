@@ -14,6 +14,7 @@ public:
 	void kresli();
 	void pohni();
 
+
 };
 
 #endif // STRELA_H
