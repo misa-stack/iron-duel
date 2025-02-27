@@ -22,7 +22,9 @@ void raketa::kresli(){
 	cara(x + 10 * cos(DEG2RAD(240) + natoceni), y + 10 * sin(DEG2RAD(240) + natoceni));
 	cara(x + 10 * cos(DEG2RAD(300) + natoceni), y + 10 * sin(DEG2RAD(300) + natoceni));
 	cara(x + 10 * cos(DEG2RAD(90) + natoceni), y + 10 * sin(DEG2RAD(90) + natoceni));
-
+	trojuhelnik(x + 10 * cos(DEG2RAD(90) + natoceni), y + 10 * sin(DEG2RAD(90) + natoceni),
+		    x + 10 * cos(DEG2RAD(240) + natoceni), y + 10 * sin(DEG2RAD(240) + natoceni),
+		    x + 10 * cos(DEG2RAD(300) + natoceni), y + 10 * sin(DEG2RAD(300) + natoceni));
 }
 void raketa::pohni(){
 

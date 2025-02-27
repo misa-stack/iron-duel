@@ -84,8 +84,8 @@ int main(int argc, char** argv)
             zbranraketa.kresli();
         }
 
-	v.kresli();
-	v.rk++;
+	//v.kresli();
+	//v.rk++;
         /* konec kresleni */
         obrazovka->aktualizuj();
         SDL_Delay(16);

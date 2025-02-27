@@ -513,3 +513,41 @@ for(int z = 0;z <r;z++){
     cara(x-z,y,x-z,y+sqrt(r*r-z*z));
     cara(x+z,y,x+z,y+sqrt(r*r-z*z));
 }}
+void trojuhelnik(int x1, int y1, int x2, int y2, int x3, int y3) {
+    // Ensure the vertices are ordered by y-coordinate (y1 <= y2 <= y3)
+	if (y1 > y2) { std::swap(x1, x2); std::swap(y1, y2); }
+	if (y1 > y3) { std::swap(x1, x3); std::swap(y1, y3); }
+	if (y2 > y3) { std::swap(x2, x3); std::swap(y2, y3); }
+
+    // Lambda function to interpolate x-coordinate based on y-coordinate
+	auto interpolate = [](int y, int x1, int y1, int x2, int y2) -> double {
+	    if (y1 == y2) return x1; // Avoid division by zero
+	    return x1 + (double(y) - y1) * (x2 - x1) / (y2 - y1);
+	};
+
+
+    // Fill the bottom part of the triangle (from y1 to y2)
+    for (int y = y1; y <= y2; ++y) {
+	int startX = interpolate(y, x1, y1, x2, y2);
+	int endX = interpolate(y, x1, y1, x3, y3);
+
+	if (startX > endX) std::swap(startX, endX);
+
+	for (int x = startX; x <= endX; ++x) {
+	    bod(x, y);
+	}
+    }
+
+    // Fill the top part of the triangle (from y2 to y3)
+    for (int y = y2; y <= y3; ++y) {
+	int startX = interpolate(y, x2, y2, x3, y3);
+	int endX = interpolate(y, x1, y1, x3, y3);
+
+	if (startX > endX) std::swap(startX, endX);
+
+	for (int x = startX; x <= endX; ++x) {
+	    bod(x, y);
+	}
+    }
+
+}
