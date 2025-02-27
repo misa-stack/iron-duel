@@ -115,6 +115,7 @@ void Krajina::hory(int x1, int y1, int x2, int y2)
 void Krajina::kresli()
 {
 
+
     if(typ == 0) barva(65,152,10);
     if(typ == 1) barva(130,130,130);
     if(typ == 2) barva(223,226,127);

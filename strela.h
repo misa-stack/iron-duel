@@ -13,6 +13,8 @@ public:
 	float y;
 	void kresli();
 	void pohni();
+
+
 };
 
 #endif // STRELA_H
