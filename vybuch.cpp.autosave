@@ -6,14 +6,12 @@
 
 vybuch::vybuch(int x, int y): xk(x), yk(y)
 {
-rk = 1;
+rk = 0;
 }
 
 void vybuch::kresli()
 {
     barva(237,98,64);
     kruh(xk,yk,rk);
-    for(int i)
     rk++;
-
 }

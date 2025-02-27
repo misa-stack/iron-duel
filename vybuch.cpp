@@ -6,13 +6,19 @@
 
 vybuch::vybuch(int x, int y): xk(x), yk(y)
 {
-rk = 0;
+rk = 1;
 }
 
 void vybuch::kresli()
 {
     barva(237,98,64);
     kruh(xk,yk,rk);
-    rk++;
-
+    if (rk < 100 & rk>0)
+    {
+        rk ++;
+    }
+    else
+    {
+        rk = 0;
+    }
 }
