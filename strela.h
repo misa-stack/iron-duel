@@ -11,10 +11,10 @@ public:
 	float ay;
 	float x;
 	float y;
-	int s;
 	void kresli();
 	void pohni();
-	void zmena();
+
+
 };
 
 #endif // STRELA_H
