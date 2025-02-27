@@ -113,16 +113,13 @@ int main(int argc, char** argv)
 			zbranraketa.kresli();
 		}
 
-<<<<<<< HEAD
     v.kresli();
 
 
         /* konec kresleni */
         obrazovka->aktualizuj();
         SDL_Delay(16);
-=======
 v.kresli();
->>>>>>> d3d26643b0205b04442dfc0af7cea6e2cc13b8f5
 
 
 
