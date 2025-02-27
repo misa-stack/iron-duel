@@ -10,7 +10,6 @@ public:
     int xk;
     int yk;
     void kresli();
-    void animuj();
 };
 
 #endif // VYBUCH_H

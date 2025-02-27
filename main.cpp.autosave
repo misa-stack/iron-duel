@@ -31,10 +31,7 @@ int main(int argc, char** argv)
 		base.pohni();
 		k.kresli();
         v.kresli();
-        if (v.rk > 100)
-        {
-            v.rk = 0;
-        }
+
 
 		/* konec kresleni */
 		obrazovka->aktualizuj();
