@@ -3,12 +3,14 @@
 #include "pozadi.h"
 #include "grafika.h"
 #include "krajina.h"
+#include <time.h>
 void kometa(int x, int y,int r){
 	kruh(x,y,r);
 
 }
 int main(int argc, char** argv)
 {
+    srand(time(NULL));
 	Obrazovka* obrazovka = Obrazovka::instance();
 	obrazovka->inicializuj(800, 600, 0, 0);
 	strela base(100,200);
