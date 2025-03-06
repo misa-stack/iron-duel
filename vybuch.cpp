@@ -15,8 +15,11 @@ void vybuch::kresli()
     barva(237,98,64);
     kruh(xk,yk,rk);
 
+<<<<<<< HEAD
 			barva(237,98,64);
 	kruh(xk,yk,rk);
+=======
+>>>>>>> 030b434862b67e31b6ce7773e55f5033b9c65648
 
 
 	if (rk < 30 & rk > 0) {         //velikost výbuchu
@@ -38,6 +41,7 @@ void vybuch::kresli()
 					rk = 0;         //kdyby náhodou výpočet šel mimo interval tak se to vynuluje
 				}}}
 	}
+<<<<<<< HEAD
 
                     rk = 0;         //kdyby náhodou výpočet šel mimo interval tak se to vynuluje
 		}
@@ -60,5 +64,7 @@ void vybuch::kresli()
 
 				rk = 0;
 			}}}
+=======
+>>>>>>> 030b434862b67e31b6ce7773e55f5033b9c65648
 }
 
