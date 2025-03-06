@@ -5,9 +5,7 @@
 #include "krajina.h"
 strela::strela(float x,float y): x(x), y(y)
 {
-	vx = 3;
-	vy = -3;
-	ay = 0.15;
+    ay = 0.0055;
 }
 void strela::kresli(){
 	barva(100,255,118);
