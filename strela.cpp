@@ -5,6 +5,7 @@
 #include "krajina.h"
 strela::strela(float x,float y): x(x), y(y)
 {
+	//zada rychlost strely
 	vx = 10;
 	vy = -3;
 	ay= 0.45;
@@ -13,7 +14,7 @@ strela::strela(float x,float y): x(x), y(y)
 }
 void strela::kresli(){
 
-
+// maluju strelu
 	barva(100,255,118);
 
 	kruh(x,y,3);
@@ -21,7 +22,7 @@ void strela::kresli(){
 }
 void strela::pohni(){
 
-
+//hejbu se strelou
 	x= x + vx;
 	y= y + vy;
 	vy= vy+ ay;

@@ -14,22 +14,22 @@ void vybuch::kresli()
 {
 	barva(237,98,64);
 	kruh(xk,yk,rk);
-    barva(237,98,64);
-    kruh(xk,yk,rk);
-    if (zvetsovanikonec == false){
-	 if (rk < 29 & rk > 0) {
-		rk = rk + 1 ;
-		if (rk == 28)
-			zvetsovanikonec = true;
-	}}
+	barva(237,98,64);
+	kruh(xk,yk,rk);
+	if (zvetsovanikonec == false){
+		if (rk < 29 & rk > 0) {
+			rk = rk + 1 ;
+			if (rk == 28)
+				zvetsovanikonec = true;
+		}}
 
-    if (zvetsovanikonec == true){
-    {if (rk < 30 & rk > 0) {
-		rk = rk -1 ;
-	}
-	else{
+	if (zvetsovanikonec == true){
+		{if (rk < 30 & rk > 0) {
+				rk = rk -1 ;
+			}
+			else{
 
-		rk = 0;
-	}}}
+				rk = 0;
+			}}}
 }
 

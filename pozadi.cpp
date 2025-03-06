@@ -6,6 +6,7 @@
 
 
 Pozadi::Pozadi()
+//urcim pozice hvezdicek
 {
 	for (int i = 0;20 > i;i++)
 	{
@@ -18,6 +19,7 @@ Pozadi::Pozadi()
 
 
 void Pozadi::pohni()
+//hybu s kometou na pozadi
 {
 	for(int i =0; i<20; i++)
 	{
@@ -30,8 +32,10 @@ void Pozadi::pohni()
 }
 
 void Pozadi::kresli()
+
 {
-    srand(4);
+    srand(8);
+    //maluju pozadi nocni oblohy
 	if (u == 1){
 		for(int i = 1;i < 600;i++){
 			barva(0,0,i/8);
@@ -49,6 +53,7 @@ void Pozadi::kresli()
 			barva(160*svitivostkometa, 0, 40*svitivostkometa);
 			kruh(nahx[i],nahy[i],nahoda(5));
 		}}
+	// maluji zapad slunce
 	else{
 		for(int i = 0;i < 600;i++){
 			barva(255,180-i/4,0);
@@ -70,6 +75,8 @@ void Pozadi::kresli()
 	}
 }
 void Pozadi::zmenu(){
+//prikaz jenz meni pozadi
+
 	u++;
 	if ( u == 3)
 		u = 1;

@@ -9,73 +9,73 @@
 
 int main(int argc, char** argv)
 {
-    srand(time(NULL));
+	srand(time(NULL));
 
-	int rychlax = 100;
-	int rychlay = 200;
-	int basex = 100;
-	int basey = 200;
+	int rychlax = 100; //nastavuji zakladni pozici strel
+	int rychlay = 200; //nastavuji zakladni pozici strel
+	int basex = 100; //nastavuji zakladni pozici strel
+	int basey = 200; //nastavuji zakladni pozici strel
 	Obrazovka* obrazovka = Obrazovka::instance();
 	obrazovka->inicializuj(800, 600, 0, 0);
-	strela base(basex,basey);
+	strela base(basex,basey); //sestavuji veci podle trid
 	vybuch v(100,200);
 	Krajina k;
 	Pozadi pozadi;
-	raketa rychla(rychlax,rychlay);
+
 	//int t2;
 	//int t1;
-	bool bas = false;
-	bool rychl = false;
-	int s =1;
+	bool bas = false; //urcuji zda byla strela odpalena ci ne
+	bool rychl = false; //urcuji zda byla strela odpalena ci ne
+	int jakoustreluodpalujes =1;
 
 
 	//int t2;
 	//int t1;
 	while(1)
 	{
-		//t1 = SDL_GetTicks();
-		obrazovka->smaz();
-		
 		/* zacatek kresleni */
 		//srand(1258);
-		pozadi.pohni();
+		pozadi.pohni(); // maluji pozadi a krajinu
 		pozadi.kresli();
 		base.kresli();
 		base.pohni();
 		k.kresli();
-        v.kresli();
-        if (v.rk > 100)
-        {
-            v.rk = 0;
-        }
-    Krajina k;
-    Pozadi pozadi;
-    raketa rychla(rychlax,rychlay);
-    //int t2;
-    //int t1;
-    bool bas = false;
-    bool rychl = false;
-    int s =1;
-
-	Obrazek zbranraketa;
-	Obrazek zbrankanon;
-	Obrazek momentalnizbran;
 
 
-	while(1)
-	{
+
+
+
+		Krajina k;
+		Pozadi pozadi;
+		raketa rychla(rychlax,rychlay);
+		//int t2;
+		//int t1;
+
+
+		Obrazek zbranraketa;
+		Obrazek zbrankanon;
+		Obrazek momentalnizbran;
+
+		if( k.jeHlina(rychla.x,rychla.y) == 1){
+			v.kresli();
+			if (v.rk > 100)
+			{
+				v.rk = 0;
+			}
+		}
+
+
+
+
 		//t1 = SDL_GetTicks();
 		obrazovka->smaz();
-
-		/* zacatek kresleni */
-		//srand(1258);
-
 
 
 
 		pozadi.pohni();
 		pozadi.kresli();
 		k.kresli();
+		//nastavuji recyklaci strel ze pokud x a y te strely je mimo tu obrazovku tak se jeji parametry resetujou na puvodni
 		if(bas ==true){
 			base.kresli();
 			base.pohni();
@@ -100,23 +100,23 @@ int main(int argc, char** argv)
 			}
 
 		}
+		//maluji popis jakou strelu pouzivam aby uzivatel vedel jakou momentalne odpaluje
 		momentalnizbran.nacti("momentalnizbran.png");
 		momentalnizbran.umisti(600,0);
 		momentalnizbran.kresli();
-		if(s == 1)
+		if(jakoustreluodpalujes == 1)
 		{
 			zbrankanon.nacti("kanon.png");
 			zbrankanon.umisti(700,10);
 			zbrankanon.kresli();
 		}
-		if(s == 2)
+		if(jakoustreluodpalujes == 2)
 		{
 			zbranraketa.nacti("raketa.png");
 			zbranraketa.umisti(700,10);
 			zbranraketa.kresli();
 		}
 
-v.kresli();
 
 
 
@@ -125,7 +125,7 @@ v.kresli();
 		obrazovka->aktualizuj();
 
 
-  SDL_Delay(16);
+		SDL_Delay(16);
 
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
@@ -142,18 +142,18 @@ v.kresli();
 					k.zmena();
 					break;
 				case SDLK_UP:
-					s++;
-					if(s == 3){
-						s= 1;
+					jakoustreluodpalujes++;
+					if(jakoustreluodpalujes == 3){
+						jakoustreluodpalujes= 1;
 					}
 					break;
 				case SDLK_f:
-					if(s==1){
+					if(jakoustreluodpalujes==1){
 
 						bas = true;
 						break;
 					}
-					if(s==2){
+					if(jakoustreluodpalujes==2){
 						rychl = true;
 						break;
 					}
@@ -169,5 +169,3 @@ v.kresli();
 		//if (5 - dt > 0)SDL_Delay(5 -dt);
 	}
 }
-}
-
