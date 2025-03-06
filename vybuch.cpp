@@ -19,15 +19,7 @@ void vybuch::kresli()
     barva(237,98,64);
     kruh(xk,yk,rk);
 
-    if (rk < 100 & rk>0)
-    {
-        rk ++;
-    }
-    else
-    {
-        rk = 0;
-    }
-    rk++;
+
 	if (rk < 30 & rk > 0) {
 		rk = rk -1 ;
 	}
