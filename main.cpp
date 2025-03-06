@@ -5,14 +5,15 @@
 #include "grafika.h"
 #include "krajina.h"
 #include "tank.h"
-void kometa(int x, int y,int r){
-	kruh(x,y,r);
 
+void kometa(int x, int y,int r)
+{
+    kruh(x,y,r);
 }
 int main(int argc, char** argv)
 {
-	Obrazovka* obrazovka = Obrazovka::instance();
-	obrazovka->inicializuj(800, 600, 0, 0);
+    Obrazovka* obrazovka = Obrazovka::instance();
+    obrazovka->inicializuj(800, 600, 0, 0);
 
     int tah=0;
 
@@ -21,20 +22,21 @@ int main(int argc, char** argv)
     tank[0].umisti(670, 300);
 
     strela*s=NULL;
-	Krajina k;
-	Pozadi pozadi;
-	//int t2;
-	//int t1;
-	while(1)
-	{
-		//t1 = SDL_GetTicks();
-		obrazovka->smaz();
-		
-		/* zacatek kresleni */
-		//srand(1258);
+    Krajina k;
+    Pozadi pozadi;
+
+    while(1)
+    {
+        //t1 = SDL_GetTicks();
+        obrazovka->smaz();
+
+        /* zacatek kresleni */
+        //srand(1258);
+
         int a=tah;
-		pozadi.pohni();
-		pozadi.kresli();
+
+        pozadi.pohni();
+        pozadi.kresli();
         k.kresli();
 
         if(s)
@@ -47,8 +49,9 @@ int main(int argc, char** argv)
         tank[0].kresli();
         tank[a].naloz();
 
-		/* konec kresleni */
-		obrazovka->aktualizuj();
+        /* konec kresleni */
+        obrazovka->aktualizuj();
+
          Uint8* key = SDL_GetKeyState(NULL);
          if(key[SDLK_LEFT])
          {
@@ -77,24 +80,23 @@ int main(int argc, char** argv)
                 tank[a].prach+=0.3;
          }
 
-		SDL_Event event;
-		while(SDL_PollEvent(&event))
-		{
-			switch(event.type)
-			{
-			case SDL_KEYDOWN:
-				switch(event.key.keysym.sym)
-				{
-				case SDLK_p:
-					pozadi.zmenu();
-					break;
-				case SDLK_k:
-					k.zmena();
-					break;
-
-				case SDLK_ESCAPE:
-					SDL_Quit();
-					return 0;
+        SDL_Event event;
+        while(SDL_PollEvent(&event))
+        {
+            switch(event.type)
+            {
+            case SDL_KEYDOWN:
+                switch(event.key.keysym.sym)
+                {
+                case SDLK_p:
+                    pozadi.zmenu();
+                    break;
+                case SDLK_k:
+                    k.zmena();
+                    break;
+                case SDLK_ESCAPE:
+                    SDL_Quit();
+                    return 0;
                 case SDLK_SPACE:
                     s = new strela(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
                     s->vx=tank[a].prach/21*cos(tank[a].uhel);
@@ -107,13 +109,13 @@ int main(int argc, char** argv)
                     else
                         tah++;
                     break;
-				}
-				break;
-			}
-		}
-		//t2 = SDL_GetTicks();
-		//int dt = t2 - t1;
-		//if (5 - dt > 0)SDL_Delay(5 -dt);
-	}
-}
+                }
+                break;
 
+            }
+        }
+        //t2 = SDL_GetTicks();
+        //int dt = t2 - t1;
+        //if (5 - dt > 0)SDL_Delay(5 -dt);
+    }
+}

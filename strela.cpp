@@ -6,13 +6,23 @@
 strela::strela(float x,float y): x(x), y(y)
 {
     ay = 0.0055;
+	//zada rychlost strely
 }
 void strela::kresli(){
+
+// maluju strelu
 	barva(100,255,118);
+
 	kruh(x,y,3);
+
 }
 void strela::pohni(){
+
+//hejbu se strelou
 	x= x + vx;
 	y= y + vy;
 	vy= vy+ ay;
+
+
+
 }

@@ -5,9 +5,19 @@
 
 Krajina::Krajina()
 {
-	srand(time (NULL));
-	typ = 0;
-
+    typ = rand() % 3;
+    if(typ == 0)
+    {
+        kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
+    }
+    if (typ ==1)
+    {
+        hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
+    }
+    if (typ == 2)
+    {
+        poust(0,nahoda(400)+200,799,nahoda(400)+200);
+    }
 }
 
 // void terencara(int x1, int y1, int x2, int y2)
@@ -32,12 +42,14 @@ void Krajina::mojecara(int x1, int y1, int x2, int y2)
 {
 	float y = y1;
 	float k = float(y2-y1)/float(x2-x1);
-	for(int x = x1; x < x2; x++)
+
+    for(int x = x1; x < x2; x++)
 	{
-		bod(x,y);
-		cara(x,599);
-		y += k;
-	}
+        for(int filly = 0; filly < 600; filly++)
+            mapa [x][filly] = filly >= y ? 1 : 2;
+
+        y += k;
+    }
 }
 void Krajina::kopec(int x1, int y1, int x2, int y2)
 {
@@ -102,30 +114,32 @@ void Krajina::hory(int x1, int y1, int x2, int y2)
 
 void Krajina::kresli()
 {
-	srand(13);
-	if(typ == 0)
-	{
-		barva(65,152,10);
-		kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
-	}
-	if (typ ==1)
-	{
-		barva(130,130,130);
-		hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
-	}
-	if (typ == 2){
-		barva(223,226,127);
-		poust(0,nahoda(400)+200,799,nahoda(400)+200);
-	}
+
+
+    if(typ == 0) barva(65,152,10);
+    if(typ == 1) barva(130,130,130);
+    if(typ == 2) barva(223,226,127);
+
+    for (int x = 0; x < 799; x ++)
+        for (int y = 0; y < 599; y++)
+        {
+            if (mapa [x][y] == 1)
+                bod(x,y);
+        }
 
 }
 void Krajina::zmena(){
 	typ++;
 	if( typ == 3)
 		typ = 0;
-
-
-
-
 }
+
+bool Krajina::jeHlina(int x, int y)
+{
+    return mapa [x][y] == 1;
+}
+
+
+
+
 
