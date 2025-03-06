@@ -56,13 +56,13 @@ int main(int argc, char** argv)
 		Obrazek zbrankanon;
 		Obrazek momentalnizbran;
 
-		if( k.jeHlina(rychla.x,rychla.y) == 1){
-			v.kresli();
-			if (v.rk > 100)
-			{
-				v.rk = 0;
-			}
-		}
+		// if( k.jeHlina(rychla.x,rychla.y) == 1){
+		// 	v.kresli();
+		// 	if (v.rk > 100)
+		// 	{
+		// 		v.rk = 0;
+		// 	}
+		// }
 
 
 
@@ -118,13 +118,19 @@ int main(int argc, char** argv)
 		}
 
 
+<<<<<<< HEAD
     v.kresli();
+=======
+>>>>>>> e274eb559e42b4ae6365523694c6ba6b62aa803c
 
 
         /* konec kresleni */
         obrazovka->aktualizuj();
         SDL_Delay(16);
+<<<<<<< HEAD
 v.kresli();
+=======
+>>>>>>> e274eb559e42b4ae6365523694c6ba6b62aa803c
 
 
 
