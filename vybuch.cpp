@@ -13,6 +13,7 @@ vybuch::vybuch(int x, int y): xk(x), yk(y)
 
 void vybuch::kresli()
 {
+<<<<<<< HEAD
     barva(237,98,64);
     kruh(xk,yk,rk);
 
@@ -36,5 +37,26 @@ void vybuch::kresli()
                     rk = 0;         //kdyby náhodou výpočet šel mimo interval tak se to vynuluje
                 }}}
     }
+=======
+	barva(237,98,64);
+	kruh(xk,yk,rk);
+	barva(237,98,64);
+	kruh(xk,yk,rk);
+	if (zvetsovanikonec == false){
+		if (rk < 29 & rk > 0) {
+			rk = rk + 1 ;
+			if (rk == 28)
+				zvetsovanikonec = true;
+		}}
+
+	if (zvetsovanikonec == true){
+		{if (rk < 30 & rk > 0) {
+				rk = rk -1 ;
+			}
+			else{
+
+				rk = 0;
+			}}}
+>>>>>>> 93ef8eba25b3f6b1fb8715b69281d1d29b231c71
 }
 

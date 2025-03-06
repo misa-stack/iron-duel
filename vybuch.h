@@ -5,12 +5,12 @@
 class vybuch
 {
 public:
-    vybuch(int x, int y);
-    int rk;
-    int xk;
-    int yk;
-    bool zvetsovanikonec;
-    void kresli();
+	vybuch(int x, int y);
+	int rk;
+	int xk;
+	int yk;
+	bool zvetsovanikonec;
+	void kresli();
 };
 
 #endif // VYBUCH_H

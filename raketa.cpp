@@ -8,6 +8,7 @@
 
 raketa::raketa(float x,float y): x(x), y(y)
 {
+	//nastavuji natoceni a rychlost strely
 	natoceni = 0;
 	vx = 4;
 	vy = -3;
@@ -15,7 +16,7 @@ raketa::raketa(float x,float y): x(x), y(y)
 
 }
 void raketa::kresli(){
-
+//udavam pozici a natoceni rakety a nasledni ji kreslim
 	natoceni = atan2(y-sy,x-sx) - M_PI / 2;
 	barva(100,255,118);
 	bod(x + 10 * cos(DEG2RAD(90) + natoceni), y + 10 * sin(DEG2RAD(90) + natoceni));
@@ -27,7 +28,7 @@ void raketa::kresli(){
 		    x + 10 * cos(DEG2RAD(300) + natoceni), y + 10 * sin(DEG2RAD(300) + natoceni));
 }
 void raketa::pohni(){
-
+//raketa se hybe
 	sx = x;
 	sy = y;
 
