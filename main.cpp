@@ -66,7 +66,7 @@ int main(int argc, char** argv)
 
 
 
-
+v.kresli();
 		//t1 = SDL_GetTicks();
 		obrazovka->smaz();
 
@@ -118,12 +118,10 @@ int main(int argc, char** argv)
 		}
 
 
-    v.kresli();
 
         /* konec kresleni */
         obrazovka->aktualizuj();
         SDL_Delay(16);
-v.kresli();
 
 
 
