@@ -128,11 +128,6 @@ void Krajina::kresli()
         }
 
 }
-void Krajina::zmena(){
-	typ++;
-	if( typ == 3)
-		typ = 0;
-}
 
 bool Krajina::jeHlina(int x, int y)
 {

@@ -21,6 +21,11 @@ int main(int argc, char** argv)
 	vybuch v(100,200);
 	Krajina k;
 	Pozadi pozadi;
+    raketa rychla(rychlax,rychlay);
+    Obrazek zbranraketa;
+    Obrazek zbrankanon;
+    Obrazek momentalnizbran;
+
 
 	//int t2;
 	//int t1;
@@ -42,19 +47,6 @@ int main(int argc, char** argv)
 		k.kresli();
 
 
-
-
-
-		Krajina k;
-		Pozadi pozadi;
-		raketa rychla(rychlax,rychlay);
-		//int t2;
-		//int t1;
-
-
-		Obrazek zbranraketa;
-		Obrazek zbrankanon;
-		Obrazek momentalnizbran;
 
 		// if( k.jeHlina(rychla.x,rychla.y) == 1){
 		// 	v.kresli();
@@ -145,9 +137,6 @@ v.kresli();
 				{
 				case SDLK_p:
 					pozadi.zmenu();
-					break;
-				case SDLK_k:
-					k.zmena();
 					break;
 				case SDLK_UP:
 					jakoustreluodpalujes++;
