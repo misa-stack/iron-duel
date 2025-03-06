@@ -31,7 +31,7 @@ void Pozadi::pohni()
 
 void Pozadi::kresli()
 {
-	//    srand(4);
+    srand(4);
 	if (u == 1){
 		for(int i = 1;i < 600;i++){
 			barva(0,0,i/8);

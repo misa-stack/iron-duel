@@ -9,6 +9,7 @@ public:
     int rk;
     int xk;
     int yk;
+    bool zvetsovanikonec;
     void kresli();
 };
 

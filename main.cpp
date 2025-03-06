@@ -3,11 +3,14 @@
 #include "pozadi.h"
 #include "grafika.h"
 #include "krajina.h"
+#include <time.h>
 #include "raketa.h"
 #include "vybuch.h"
 
 int main(int argc, char** argv)
 {
+    srand(time(NULL));
+
 	int rychlax = 100;
 	int rychlay = 200;
 	int basex = 100;
