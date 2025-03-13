@@ -30,6 +30,8 @@ int main(int argc, char** argv)
     int tah=0;
 
     Tank tank[2];
+    tank[1].umisti(130, k.kdeJeHlina(130));
+    tank[0].umisti(670, k.kdeJeHlina(670));
 
     strela*s=NULL;
 
