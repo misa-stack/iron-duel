@@ -1,9 +1,9 @@
-#include "vybuch.h"
+#include "strela.h"
 #include <SDL/SDL.h>
 #include "pozadi.h"
 #include "grafika.h"
 #include "krajina.h"
-
+#include "vybuch.h"
 vybuch::vybuch(int x, int y): xk(x), yk(y)
 {
 
@@ -15,6 +15,9 @@ void vybuch::kresli()
 {
     barva(237,98,64);
     kruh(xk,yk,rk);
+
+barva(237,98,64);
+	kruh(xk,yk,rk);
 
 
 
@@ -36,6 +39,9 @@ void vybuch::kresli()
 
 					rk = 0;         //kdyby náhodou výpočet šel mimo interval tak se to vynuluje
 				}}}
-	}
-}
+	}}
+
+
+
+
 
