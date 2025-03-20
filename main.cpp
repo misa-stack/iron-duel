@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 		momentalnizbran.kresli();
 
 
-    v.kresli();
+    v.kresli(k);
 
         pozadi.pohni();
         pozadi.kresli();

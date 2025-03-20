@@ -147,7 +147,10 @@ int Krajina::kdeJeHlina(int x)
     return 0;
 }
 
-
-
+// zmeni dany bod v mape na 0 (tzn. pozadi)
+void Krajina::vyzobni(int x, int y)
+{
+    mapa [x][y] = 0;
+}
 
 
