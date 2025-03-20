@@ -38,6 +38,8 @@ Krajina::Krajina()
 //         terencara(xs,ys,x2,y2);
 //     }
 // }
+
+//perkresluje vygenerovanou krajinu do 2d pole "mapa", abychom presne vedeli, na kterych bodech je a neni krajina
 void Krajina::mojecara(int x1, int y1, int x2, int y2)
 {
 	float y = y1;
@@ -46,8 +48,7 @@ void Krajina::mojecara(int x1, int y1, int x2, int y2)
     for(int x = x1; x < x2; x++)
 	{
         for(int filly = 0; filly < 600; filly++)
-            mapa [x][filly] = filly >= y ? 1 : 2;
-
+            mapa [x][filly] = filly >= y ? 1 : 0;
         y += k;
     }
 }
@@ -128,18 +129,28 @@ void Krajina::kresli()
         }
 
 }
-void Krajina::zmena(){
-	typ++;
-	if( typ == 3)
-		typ = 0;
-}
 
+// zjistuje jestli na danem bode je nebo není krajina
 bool Krajina::jeHlina(int x, int y)
 {
     return mapa [x][y] == 1;
 }
 
+//zjistuje vysku krajiny na dane x souradnici
+int Krajina::kdeJeHlina(int x)
+{
+    for (int y = 0; y < 600; y++)
+    {
+        if (mapa [x][y] == 1)
+            return y;
+    }
+    return 0;
+}
 
-
+// zmeni dany bod v mape na 0 (tzn. pozadi)
+void Krajina::vyzobni(int x, int y)
+{
+    mapa [x][y] = 0;
+}
 
 

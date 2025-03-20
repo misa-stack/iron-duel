@@ -1,5 +1,6 @@
 #ifndef STRELA_H
 #define STRELA_H
+#include "krajina.h"
 
 
 class strela
@@ -12,9 +13,7 @@ public:
 	float x;
 	float y;
     virtual void kresli();
-    virtual void pohni();
-
-
+    virtual bool pohni(Krajina *k);
 };
 
 #endif // STRELA_H

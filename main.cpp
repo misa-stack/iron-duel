@@ -6,6 +6,7 @@
 #include "krajina.h"
 #include "tank.h"
 #include "raketa.h"
+#include "vybuch.h"
 
 void kometa(int x, int y,int r)
 {
@@ -16,16 +17,25 @@ int main(int argc, char** argv)
     Obrazovka* obrazovka = Obrazovka::instance();
     obrazovka->inicializuj(800, 600, 0, 0);
 
+	int rychlax = 100; //nastavuji zakladni pozici strel
+	int rychlay = 200; //nastavuji zakladni pozici strel
+	int basex = 100; //nastavuji zakladni pozici strel
+	int basey = 200; //nastavuji zakladni pozici strel
+	vybuch v(100,200);
+	Krajina k;
+	Pozadi pozadi;
+    Obrazek zbranraketa;
+    Obrazek zbrankanon;
+    Obrazek momentalnizbran;
+
     int tah=0;
     int naboj=1;
 
     Tank tank[2];
-    tank[1].umisti(130, 300);
-    tank[0].umisti(670, 300);
+    tank[1].umisti(130, k.kdeJeHlina(130));
+    tank[0].umisti(670, k.kdeJeHlina(670));
 
     strela*s=NULL;
-    Krajina k;
-    Pozadi pozadi;
 
     while(1)
     {
@@ -37,6 +47,34 @@ int main(int argc, char** argv)
 
         int a=tah;
 
+		// if( k.jeHlina(rychla.x,rychla.y) == 1){
+		// 	v.kresli();
+		// 	if (v.rk > 100)
+		// 	{
+		// 		v.rk = 0;
+		// 	}
+		// }
+
+
+
+
+		//t1 = SDL_GetTicks();
+		obrazovka->smaz();
+
+
+
+		pozadi.pohni();
+		pozadi.kresli();
+		k.kresli();
+
+		//maluji popis jakou strelu pouzivam aby uzivatel vedel jakou momentalne odpaluje
+		momentalnizbran.nacti("momentalnizbran.png");
+		momentalnizbran.umisti(600,0);
+		momentalnizbran.kresli();
+
+
+    v.kresli(k);
+
         pozadi.pohni();
         pozadi.kresli();
         k.kresli();
@@ -44,7 +82,12 @@ int main(int argc, char** argv)
         if(s)
         {
             s->kresli();
-            s->pohni();
+            if(s->pohni(&k))
+            {
+
+               s = NULL;
+        }
+
         }
 
         tank[1].kresli();
@@ -104,9 +147,6 @@ int main(int argc, char** argv)
                 case SDLK_p:
                     pozadi.zmenu();
                     break;
-                case SDLK_k:
-                    k.zmena();
-                    break;
                 case SDLK_1:
                 case SDLK_KP1:
                     naboj=1;
@@ -139,11 +179,12 @@ int main(int argc, char** argv)
                     break;
                 }
                 break;
-
             }
+		/* konec kresleni */
+		obrazovka->aktualizuj();
+
         }
-        //t2 = SDL_GetTicks();
-        //int dt = t2 - t1;
-        //if (5 - dt > 0)SDL_Delay(5 -dt);
-    }
+
+	}
+
 }

@@ -7,39 +7,50 @@
 vybuch::vybuch(int x, int y): xk(x), yk(y)
 {
 
-	rk = 1;
-	zvetsovanikonec= false;
+    rk = 1;
+    zvetsovanikonec= false;
 }
 
-void vybuch::kresli()
+void vybuch::kresli(Krajina &k)
 {
     barva(237,98,64);
     kruh(xk,yk,rk);
 
-barva(237,98,64);
-	kruh(xk,yk,rk);
+    for(int z = 0;z <rk;z++){
+
+        for(int v = yk-sqrt(rk*rk-z*z); v < yk+sqrt(rk*rk-z*z); v++)
+        {
+            k.vyzobni(xk+z,v);
+            k.vyzobni(xk-z,v);
+        }
 
 
+    }
 
-	if (rk < 30 & rk > 0) {         //velikost výbuchu
 
-		if (zvetsovanikonec == false){
-			if (rk < 29 & rk > 0) {
-				rk = rk + 1 ;       //zvětšování
-				if (rk == 28)
-					zvetsovanikonec = true;
-			}}
+    if (rk < 30 && rk > 0) {         //velikost výbuchu
 
-		if (zvetsovanikonec == true){
-			{if (rk < 30 & rk > 0) {
+        if (zvetsovanikonec == false){
+            if (rk < 29 && rk > 0) {
+                rk = rk + 1 ;       //zvětšování
+                if (rk == 28)
+                    zvetsovanikonec = true;
+            }
+        }
 
-					rk = rk -1 ;
-				}
-				else{
+        if (zvetsovanikonec == true){
 
-					rk = 0;         //kdyby náhodou výpočet šel mimo interval tak se to vynuluje
-				}}}
-	}}
+            if (rk < 30 && rk > 0) {
+                rk = rk -1 ;
+            }
+            else{
+
+                rk = 0;         //kdyby náhodou výpočet šel mimo interval tak se to vynuluje
+            }
+
+        }
+    }
+}
 
 
 

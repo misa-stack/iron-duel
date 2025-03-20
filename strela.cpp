@@ -2,7 +2,7 @@
 #include <SDL/SDL.h>
 #include "pozadi.h"
 #include "grafika.h"
-#include "krajina.h"
+
 strela::strela(float x,float y): x(x), y(y)
 {
     ay = 0.1;
@@ -16,12 +16,21 @@ void strela::kresli(){
 	kruh(x,y,3);
 
 }
-void strela::pohni(){
+bool strela::pohni(Krajina *k){
 
 //hejbu se strelou
 	x= x + vx;
 	y= y + vy;
 	vy= vy+ ay;
+    if(k->jeHlina(x, y))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
 
 
 
