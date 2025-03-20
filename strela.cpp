@@ -5,7 +5,7 @@
 #include "krajina.h"
 strela::strela(float x,float y): x(x), y(y)
 {
-    ay = 0.0055;
+    ay = 0.1;
 	//zada rychlost strely
 }
 void strela::kresli(){

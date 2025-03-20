@@ -1,16 +1,12 @@
 #ifndef RAKETA_H
 #define RAKETA_H
+#include "strela.h"
 
 
-class raketa
+class raketa:public strela
 {
 public:
 	raketa(float x,float y);
-	float vy;
-	float vx;
-	float ay;
-	float x;
-	float y;
 	float sx;
 	float sy;
 	float natoceni;

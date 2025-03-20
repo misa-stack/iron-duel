@@ -6,7 +6,7 @@
 
 #define DEG2RAD(x) (x / 180.0 * M_PI)
 
-raketa::raketa(float x,float y): x(x), y(y)
+raketa::raketa(float x,float y): strela(x, y)
 {
 	//nastavuji natoceni a rychlost strely
 	natoceni = 0;

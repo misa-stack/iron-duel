@@ -11,8 +11,8 @@ public:
 	float ay;
 	float x;
 	float y;
-	void kresli();
-	void pohni();
+    virtual void kresli();
+    virtual void pohni();
 
 
 };
