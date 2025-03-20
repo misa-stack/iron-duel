@@ -80,7 +80,12 @@ int main(int argc, char** argv)
         if(s)
         {
             s->kresli();
-            s->pohni();
+            if(s->pohni(&k))
+            {
+
+               s = NULL;
+        }
+
         }
 
         tank[1].kresli();
