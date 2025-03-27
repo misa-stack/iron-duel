@@ -6,6 +6,7 @@
 #include "grafika.h"
 #include "krajina.h"
 #include "tank.h"
+#include "raketa.h"
 #include "vybuch.h"
 void kometa(int x, int y,int r)
 {
@@ -28,6 +29,7 @@ int main(int argc, char** argv)
     Obrazek momentalnizbran;
 Menu hlavni;
     int tah=0;
+    int naboj=1;
 
     Tank tank[2];
     tank[1].umisti(130, k.kdeJeHlina(130));
@@ -72,6 +74,8 @@ Menu hlavni;
 
 
 
+    v.kresli(k);
+
         pozadi.pohni();
         pozadi.kresli();
         k.kresli();
@@ -79,16 +83,33 @@ Menu hlavni;
         if(s)
         {
             s->kresli();
-            s->pohni();
+            if(s->pohni(&k))
+            {
+
+               s = NULL;
+        }
+
         }
 
         tank[1].kresli();
         tank[0].kresli();
         tank[a].naloz();
 
-	v.kresli();
+
+
 
       hlavni.kresli();
+        if (naboj==1)
+        {
+            barva(100,255,118);
+            kruh(750,20,5);
+        }
+        if (naboj==2)
+        {
+            barva(100,255,118);
+            trojuhelnik(740,15,745,30,735,30);
+        }
+
         /* konec kresleni */
         obrazovka->aktualizuj();
 
@@ -131,14 +152,28 @@ Menu hlavni;
                 case SDLK_p:
                     pozadi.zmenu();
                     break;
-
+                case SDLK_1:
+                case SDLK_KP1:
+                    naboj=1;
+                    break;
+                case SDLK_2:
+                case SDLK_KP2:
+                    naboj=2;
+                    break;
                 case SDLK_ESCAPE:
                     SDL_Quit();
                     return 0;
                 case SDLK_SPACE:
-                    s = new strela(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
-                    s->vx=tank[a].prach/21*cos(tank[a].uhel);
-                    s->vy=tank[a].prach/21*sin(tank[a].uhel);
+                    if (naboj==1)
+                    {
+                        s = new strela(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
+
+                    }
+                    else
+                        s = new raketa(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
+
+                    s->vx=tank[a].prach/3*cos(tank[a].uhel);
+                    s->vy=tank[a].prach/3*sin(tank[a].uhel);
 
                     if (tah==1)
                     {

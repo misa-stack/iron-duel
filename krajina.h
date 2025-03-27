@@ -14,6 +14,7 @@ public:
     void zmena();
     bool jeHlina(int x, int y);
     int kdeJeHlina(int x);
+    void vyzobni(int x, int y);
     int typ;
     int mapa [800][600];
 };
