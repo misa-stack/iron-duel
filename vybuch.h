@@ -11,7 +11,7 @@ public:
 	int xk;
 	int yk;
 	bool zvetsovanikonec;
-	void kresli(Krajina &k);
+	bool kresli(Krajina &k);
 };
 
 #endif // VYBUCH_H

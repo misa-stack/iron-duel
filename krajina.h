@@ -15,6 +15,7 @@ public:
     bool jeHlina(int x, int y);
     int kdeJeHlina(int x);
     void vyzobni(int x, int y);
+    bool padej();
     int typ;
     int mapa [800][600];
 };

@@ -11,11 +11,12 @@ vybuch::vybuch(int x, int y): xk(x), yk(y)
     zvetsovanikonec= false;
 }
 
-void vybuch::kresli(Krajina &k)
+bool vybuch::kresli(Krajina &k)
 {
     barva(237,98,64);
     kruh(xk,yk,rk);
 
+    //vyzobava kruh do pole mapa, ze ktereho se pak kresli obrazovka
     for(int z = 0;z <rk;z++){
 
         for(int v = yk-sqrt(rk*rk-z*z); v < yk+sqrt(rk*rk-z*z); v++)
@@ -42,14 +43,13 @@ void vybuch::kresli(Krajina &k)
 
             if (rk < 30 && rk > 0) {
                 rk = rk -1 ;
-            }
-            else{
-
-                rk = 0;         //kdyby náhodou výpočet šel mimo interval tak se to vynuluje
+		if(rk == 0)
+			return true;
             }
 
         }
     }
+    return false;
 }
 
 
