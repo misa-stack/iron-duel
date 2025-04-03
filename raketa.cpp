@@ -27,13 +27,9 @@ void raketa::kresli(){
 		    x + 10 * cos(DEG2RAD(240) + natoceni), y + 10 * sin(DEG2RAD(240) + natoceni),
 		    x + 10 * cos(DEG2RAD(300) + natoceni), y + 10 * sin(DEG2RAD(300) + natoceni));
 }
-void raketa::pohni(){
-//raketa se hybe
+bool raketa::pohni(Krajina*k){
+//raketa se potrebuje natocit, jinak se hybe jako strela
 	sx = x;
 	sy = y;
-
-	x= x + vx;
-	y= y + vy;
-
-	vy= vy+ ay;
+    return strela::pohni(k);
 }

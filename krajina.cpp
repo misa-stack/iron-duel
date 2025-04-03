@@ -133,6 +133,11 @@ void Krajina::kresli()
 // zjistuje jestli na danem bode je nebo není krajina
 bool Krajina::jeHlina(int x, int y)
 {
+    if(y > 599) return true;
+
+    if(x < 0 && y < 600 || x > 799 && y < 600 || y < 0)
+        return false;
+
     return mapa [x][y] == 1;
 }
 
@@ -150,7 +155,8 @@ int Krajina::kdeJeHlina(int x)
 // zmeni dany bod v mape na 0 (tzn. pozadi)
 void Krajina::vyzobni(int x, int y)
 {
-    mapa [x][y] = 0;
+    if(x >= 0 && x < 800 && y >= 0 && y < 600)
+        mapa [x][y] = 0;
 }
 
 

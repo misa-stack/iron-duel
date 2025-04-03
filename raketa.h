@@ -11,7 +11,7 @@ public:
 	float sy;
 	float natoceni;
 	void kresli();
-	void pohni();
+    virtual bool pohni(Krajina *k);
 };
 
 #endif // RAKETA_H

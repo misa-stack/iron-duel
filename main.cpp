@@ -159,10 +159,11 @@ int main(int argc, char** argv)
                     SDL_Quit();
                     return 0;
                 case SDLK_SPACE:
+                    if (s == NULL)
+                    {
                     if (naboj==1)
                     {
                         s = new strela(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
-
                     }
                     else
                         s = new raketa(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
@@ -177,6 +178,7 @@ int main(int argc, char** argv)
                     else
                         tah++;
                     break;
+                    }
                 }
                 break;
             }
