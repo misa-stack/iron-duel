@@ -36,7 +36,14 @@ Menu hlavni;
     tank[0].umisti(670, k.kdeJeHlina(670));
 
     strela*s=NULL;
-
+    enum Stav {
+	nic,
+//	zamerovani,
+//	strelba,
+//	vybuchovani,
+	padani,
+    };
+    enum Stav stav = nic;
     while(1)
     {
         //t1 = SDL_GetTicks();
@@ -62,17 +69,24 @@ Menu hlavni;
 		obrazovka->smaz();
 
 
-
 		pozadi.pohni();
 		pozadi.kresli();
 		k.kresli();
-
 		//maluji popis jakou strelu pouzivam aby uzivatel vedel jakou momentalne odpaluje
 		momentalnizbran.nacti("momentalnizbran.png");
 		momentalnizbran.umisti(600,0);
 		momentalnizbran.kresli();
 
-
+		//kresleni vybuchu a padani krajiny
+		if(v)
+		{
+			v->kresli(k);
+			if(v->kresli(k) == true)
+				stav = padani;
+		}
+		if(stav == padani)
+			if(k.padej())
+				stav = nic;
 
 
         pozadi.pohni();
@@ -92,8 +106,6 @@ Menu hlavni;
 		}
 
         }
-	if(v)
-		v->kresli(k);
 
 
         tank[1].kresli();
