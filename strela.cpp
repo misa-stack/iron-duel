@@ -2,6 +2,7 @@
 #include <SDL/SDL.h>
 #include "pozadi.h"
 #include "grafika.h"
+#include "vybuch.h"
 
 strela::strela(float x,float y): x(x), y(y)
 {
@@ -24,6 +25,7 @@ bool strela::pohni(Krajina *k){
 	vy= vy+ ay;
     if(k->jeHlina(x, y))
     {
+
         return true;
     }
     else

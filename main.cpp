@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 	int rychlay = 200; //nastavuji zakladni pozici strel
 	int basex = 100; //nastavuji zakladni pozici strel
 	int basey = 200; //nastavuji zakladni pozici strel
-	vybuch v(100,200);
+	vybuch *v = NULL;
 	Krajina k;
 	Pozadi pozadi;
     Obrazek zbranraketa;
@@ -74,7 +74,6 @@ Menu hlavni;
 
 
 
-    v.kresli(k);
 
         pozadi.pohni();
         pozadi.kresli();
@@ -86,10 +85,16 @@ Menu hlavni;
             if(s->pohni(&k))
             {
 
-               s = NULL;
-        }
+
+		v = new vybuch(s->x,s->y);
+		s = NULL;
+
+		}
 
         }
+	if(v)
+		v->kresli(k);
+
 
         tank[1].kresli();
         tank[0].kresli();
