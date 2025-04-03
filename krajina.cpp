@@ -159,4 +159,26 @@ void Krajina::vyzobni(int x, int y)
         mapa [x][y] = 0;
 }
 
+//dela padani prevysle krajiny po vybuchu, "pohnuto" znaci, jestli jeste nejake pixely mohou spadnout nebo ne
+bool Krajina::padej()
+{
+	bool pohnuto = false;
+	for (int x = 0; x < 799; x++)
+	{
+		for (int y = 598; y >= 0; y--)
+		{
+			if (mapa [x][y] == 1 && mapa [x][y+1] == 0)
+			{
+				mapa [x][y] = 0;
+				mapa [x][y+1] = 1;
+				pohnuto = true;
+			}
+		}
+	}
+	return !pohnuto;
+}
+
+
+
+
 

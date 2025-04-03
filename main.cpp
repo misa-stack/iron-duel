@@ -1,3 +1,4 @@
+#include "menu.h"
 #include "strela.h"
 #include <math.h>
 #include <SDL/SDL.h>
@@ -7,7 +8,6 @@
 #include "tank.h"
 #include "raketa.h"
 #include "vybuch.h"
-
 void kometa(int x, int y,int r)
 {
     kruh(x,y,r);
@@ -21,13 +21,13 @@ int main(int argc, char** argv)
 	int rychlay = 200; //nastavuji zakladni pozici strel
 	int basex = 100; //nastavuji zakladni pozici strel
 	int basey = 200; //nastavuji zakladni pozici strel
-	vybuch v(100,200);
+	vybuch v(500,400);
 	Krajina k;
 	Pozadi pozadi;
     Obrazek zbranraketa;
     Obrazek zbrankanon;
     Obrazek momentalnizbran;
-
+Menu hlavni;
     int tah=0;
     int naboj=1;
 
@@ -36,7 +36,14 @@ int main(int argc, char** argv)
     tank[0].umisti(670, k.kdeJeHlina(670));
 
     strela*s=NULL;
-
+    enum Stav {
+	nic,
+//	zamerovani,
+//	strelba,
+//	vybuchovani,
+	padani,
+    };
+    enum Stav stav = nic;
     while(1)
     {
         //t1 = SDL_GetTicks();
@@ -62,18 +69,23 @@ int main(int argc, char** argv)
 		obrazovka->smaz();
 
 
-
 		pozadi.pohni();
 		pozadi.kresli();
 		k.kresli();
-
 		//maluji popis jakou strelu pouzivam aby uzivatel vedel jakou momentalne odpaluje
 		momentalnizbran.nacti("momentalnizbran.png");
 		momentalnizbran.umisti(600,0);
 		momentalnizbran.kresli();
 
+		//kresleni vybuchu a padani krajiny
+		v.kresli(k);
+		if(v.kresli(k) == true)
+			stav = padani;
+		if(stav == padani)
+			if(k.padej())
+				stav = nic;
 
-    v.kresli(k);
+
 
         pozadi.pohni();
         pozadi.kresli();
@@ -94,6 +106,10 @@ int main(int argc, char** argv)
         tank[0].kresli();
         tank[a].naloz();
 
+
+
+
+      hlavni.kresli();
         if (naboj==1)
         {
             barva(100,255,118);
