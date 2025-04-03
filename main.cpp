@@ -1,3 +1,4 @@
+#include "menu.h"
 #include "strela.h"
 #include <math.h>
 #include <SDL/SDL.h>
@@ -7,7 +8,6 @@
 #include "tank.h"
 #include "raketa.h"
 #include "vybuch.h"
-
 void kometa(int x, int y,int r)
 {
     kruh(x,y,r);
@@ -27,7 +27,7 @@ int main(int argc, char** argv)
     Obrazek zbranraketa;
     Obrazek zbrankanon;
     Obrazek momentalnizbran;
-
+Menu hlavni;
     int tah=0;
     int naboj=1;
 
@@ -106,6 +106,10 @@ int main(int argc, char** argv)
         tank[0].kresli();
         tank[a].naloz();
 
+
+
+
+      hlavni.kresli();
         if (naboj==1)
         {
             barva(100,255,118);
