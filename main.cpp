@@ -32,8 +32,6 @@ Menu hlavni;
     int naboj=1;
 
     Tank tank[2];
-    tank[1].umisti(130, k.kdeJeHlina(130));
-    tank[0].umisti(670, k.kdeJeHlina(670));
 
     strela*s=NULL;
     enum Stav {
@@ -53,6 +51,10 @@ Menu hlavni;
         //srand(1258);
 
         int a=tah;
+
+        tank[1].umisti(130, k.kdeJeHlina(130));
+        tank[0].umisti(670, k.kdeJeHlina(670));
+
 
 		// if( k.jeHlina(rychla.x,rychla.y) == 1){
 		// 	v.kresli();
