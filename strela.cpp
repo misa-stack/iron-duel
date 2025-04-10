@@ -6,12 +6,12 @@
 
 strela::strela(float x,float y): x(x), y(y)
 {
-    ay = 0.1;
+	ay = 0.1;
 	//zada rychlost strely
 }
 void strela::kresli(){
 
-// maluju strelu
+	// maluju strelu
 	barva(100,255,118);
 
 	kruh(x,y,3);
@@ -19,19 +19,19 @@ void strela::kresli(){
 }
 bool strela::pohni(Krajina *k){
 
-//hejbu se strelou
+	//hejbu se strelou
 	x= x + vx;
 	y= y + vy;
 	vy= vy+ ay;
-    if(k->jeHlina(x, y))
-    {
+	if(k->jeHlina(x, y))
+	{
 
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 
 
 

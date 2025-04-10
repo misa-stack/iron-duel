@@ -12,8 +12,8 @@ public:
 	float ay;
 	float x;
 	float y;
-    virtual void kresli();
-    virtual bool pohni(Krajina *k);
+	virtual void kresli();
+	virtual bool pohni(Krajina *k);
 };
 
 #endif // STRELA_H
