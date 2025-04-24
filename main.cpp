@@ -82,7 +82,6 @@ int main(int argc, char** argv)
 		//kresleni vybuchu a padani krajiny
 		if(v)
 		{
-			v->kresli(k);
 			if(v->kresli(k) == true)
 				stav = padani;
 		}
@@ -91,22 +90,16 @@ int main(int argc, char** argv)
 				stav = nic;
 
 
-		pozadi.pohni();
-		pozadi.kresli();
-		k.kresli();
+
 
 		if(s)
 		{
 			s->kresli();
 			if(s->pohni(&k))
 			{
-
-
 				v = new vybuch(s->x,s->y);
 				s = NULL;
-
 			}
-
 		}
 
 
