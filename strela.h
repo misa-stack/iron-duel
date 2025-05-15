@@ -12,6 +12,7 @@ public:
 	float ay;
 	float x;
 	float y;
+	int vel;
 	virtual void kresli();
 	virtual bool pohni(Krajina *k);
 };

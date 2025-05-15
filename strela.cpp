@@ -8,6 +8,7 @@ strela::strela(float x,float y): x(x), y(y)
 {
 	ay = 0.1;
 	//zada rychlost strely
+	vel=30;
 }
 void strela::kresli(){
 

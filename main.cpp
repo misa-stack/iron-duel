@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 			s->kresli();
 			if(s->pohni(&k))
 			{
-				v = new vybuch(s->x,s->y);
+				v = new vybuch(s->x,s->y,s->vel);
 				s = NULL;
 			}
 		}
