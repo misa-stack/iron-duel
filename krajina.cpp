@@ -149,7 +149,7 @@ int Krajina::kdeJeHlina(int x)
 		if (mapa [x][y] == 1)
 			return y;
 	}
-	return 0;
+	return 599;
 }
 
 // zmeni dany bod v mape na 0 (tzn. pozadi)
