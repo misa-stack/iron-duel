@@ -22,6 +22,7 @@ int main(int argc, char** argv)
 	int basex = 100; //nastavuji zakladni pozici strel
 	int basey = 200; //nastavuji zakladni pozici strel
 	vybuch *v = NULL;
+	strela*s = NULL;
 	Krajina k;
 	Pozadi pozadi;
 	Obrazek zbranraketa;
@@ -33,7 +34,7 @@ int main(int argc, char** argv)
 
 	Tank tank[2];
 
-	strela*s=NULL;
+
 	enum Stav {
 		nic,
 		//	zamerovani,

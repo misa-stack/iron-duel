@@ -13,7 +13,7 @@ raketa::raketa(float x,float y): strela(x, y)
 	vx = 4;
 	vy = -3;
 	ay = 0.1;
-	vel=60;
+	vel=50;
 
 }
 void raketa::kresli(){
