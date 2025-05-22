@@ -8,6 +8,7 @@
 #include "tank.h"
 #include "raketa.h"
 #include "vybuch.h"
+#include "hopik.h"
 void kometa(int x, int y,int r)
 {
 	kruh(x,y,r);
@@ -179,6 +180,10 @@ int main(int argc, char** argv)
 				case SDLK_KP2:
 					naboj=2;
 					break;
+				case SDLK_3:
+				case SDLK_KP3:
+					naboj=3;
+					break;
 				case SDLK_ESCAPE:
 					SDL_Quit();
 					return 0;
@@ -189,8 +194,14 @@ int main(int argc, char** argv)
 						{
 							s = new strela(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
 						}
-						else
+						if (naboj==2)
+						{
 							s = new raketa(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
+						}
+						if(naboj==3)
+						{
+							s = new hopik(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
+						}
 
 						s->vx=tank[a].prach/3*cos(tank[a].uhel);
 						s->vy=tank[a].prach/3*sin(tank[a].uhel);
