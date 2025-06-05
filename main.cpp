@@ -8,6 +8,7 @@
 #include "tank.h"
 #include "raketa.h"
 #include "vybuch.h"
+#include "hopik.h"
 void kometa(int x, int y,int r)
 {
 	kruh(x,y,r);
@@ -130,9 +131,22 @@ int main(int argc, char** argv)
 			barva(100,255,118);
 			trojuhelnik(740,15,745,30,735,30);
 		}
-		if(naboj==3)
+		if (naboj==3)
 		{
-		barva(100,255,118);
+			barva(100,255,118);
+			for(int t=0; t<14; t++)
+			{
+				bod(750+t,30-sqrt(14*14-t*t));
+			}
+			for(int t=0; t<14; t++)
+			{
+				bod(750-t,30-sqrt(14*14-t*t));
+			}
+			for(int t=0; t<14; t++)
+			{
+				bod(726+t,30-sqrt(14*14-t*t));
+			}
+			kruh(726,10,5);
 		}
 
 		/* konec kresleni */
@@ -184,6 +198,10 @@ int main(int argc, char** argv)
 				case SDLK_2:
 				case SDLK_KP2:
 					naboj=2;
+					break;
+				case SDLK_3:
+				case SDLK_KP3:
+					naboj=3;
 					break;
 				case SDLK_ESCAPE:
 					SDL_Quit();

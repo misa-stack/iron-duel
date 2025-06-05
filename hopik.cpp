@@ -1,7 +1,7 @@
 #include "hopik.h"
 #include "math.h"
 
-hopik::hopik(float x, float y):strela(x, y)
+hopik::hopik(float uhel, float prach, float x,float y): strela(uhel, prach, x, y)
 {
 }
 
