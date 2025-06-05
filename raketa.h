@@ -6,7 +6,7 @@
 class raketa:public strela
 {
 public:
-	raketa(float x,float y);
+	raketa(float uhel, float prach, float x, float y);
 	float sx;
 	float sy;
 	float natoceni;

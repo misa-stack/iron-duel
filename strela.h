@@ -6,7 +6,7 @@
 class strela
 {
 public:
-	strela(float x,float y);
+	strela(float uhel, float prach, float x, float y);
 	float vy;
 	float vx;
 	float ay;

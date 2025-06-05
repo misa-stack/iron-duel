@@ -4,11 +4,16 @@
 #include "grafika.h"
 #include "vybuch.h"
 
-strela::strela(float x,float y): x(x), y(y)
+strela::strela(float uhel, float prach, float x,float y): x(x), y(y)
 {
 	ay = 0.1;
 	//zada rychlost strely
 	vel=30;
+	vx=prach*cos(uhel);
+	vy=prach*sin(uhel);
+	x+20*2*cos(uhel);
+	y+20*2*sin(uhel);
+
 }
 void strela::kresli(){
 

@@ -21,8 +21,12 @@ int main(int argc, char** argv)
 	int rychlay = 200; //nastavuji zakladni pozici strel
 	int basex = 100; //nastavuji zakladni pozici strel
 	int basey = 200; //nastavuji zakladni pozici strel
-	vybuch *v = NULL;
-	strela*s = NULL;
+	//vybuch *v = NULL;
+	std::list<vybuch*> vybuchy;
+	std::list<vybuch*>::iterator v;
+	//strela*s = NULL;
+	std::list<strela*> strely;
+	std::list<strela*>::iterator s;
 	Krajina k;
 	Pozadi pozadi;
 	Obrazek zbranraketa;
@@ -81,9 +85,13 @@ int main(int argc, char** argv)
 		momentalnizbran.kresli();
 
 		//kresleni vybuchu a padani krajiny
-		if(v)
+
+
+
+		for(v = vybuchy.begin(); v != vybuchy.end(); v++)
 		{
-			if(v->kresli(k) == true)
+
+			if((*v)->kresli(k) == true)
 				stav = padani;
 		}
 		if(stav == padani)
@@ -91,15 +99,15 @@ int main(int argc, char** argv)
 				stav = nic;
 
 
-
-
-		if(s)
+		for(s = strely.begin(); s != strely.end(); s++)
 		{
-			s->kresli();
-			if(s->pohni(&k))
+			(*s)->kresli();
+			if((*s)->pohni(&k))
 			{
-				v = new vybuch(s->x,s->y,s->vel);
-				s = NULL;
+				vybuchy.push_back(new vybuch((*s)->x,(*s)->y,(*s)->vel));
+				delete (*s);
+				s = strely.erase(s);
+				s--;
 			}
 		}
 
@@ -177,17 +185,20 @@ int main(int argc, char** argv)
 					SDL_Quit();
 					return 0;
 				case SDLK_SPACE:
-					if (s == NULL)
 					{
 						if (naboj==1)
 						{
-							s = new strela(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
+							strely.push_back(new strela(tank[a].uhel, tank[a].prach/3, tank[a].x, tank[a].y));
 						}
-						else
-							s = new raketa(tank[a].x+20*2*cos(tank[a].uhel), tank[a].y+20*2*sin(tank[a].uhel));
+						if (naboj==2)
+						{
+							strely.push_back(new raketa(tank[a].uhel, tank[a].prach/3, tank[a].x, tank[a].y));
+						}
+						if(naboj==3)
+						{
+							strely.push_back(new hopik(tank[a].uhel, tank[a].prach/3, tank[a].x, tank[a].y));
+						}
 
-						s->vx=tank[a].prach/3*cos(tank[a].uhel);
-						s->vy=tank[a].prach/3*sin(tank[a].uhel);
 
 						if (tah==1)
 						{
