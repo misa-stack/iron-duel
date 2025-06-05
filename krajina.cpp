@@ -144,10 +144,13 @@ bool Krajina::jeHlina(int x, int y)
 //zjistuje vysku krajiny na dane x souradnici
 int Krajina::kdeJeHlina(int x)
 {
+	if(x<800)
+	{
 	for (int y = 0; y < 600; y++)
 	{
 		if (mapa [x][y] == 1)
 			return y;
+	}
 	}
 	return 599;
 }
