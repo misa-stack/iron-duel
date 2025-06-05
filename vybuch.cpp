@@ -34,8 +34,8 @@ bool vybuch::kresli(Krajina &k)
 	}
 
 
-	if (rk < 30 && rk > 0) {         //velikost výbuchu
-
+	if (rk < 30 && rk > 0)          //velikost výbuchu
+	{
 		if (zvetsovanikonec == false){
 			if (rk < 29 && rk > 0) {
 				rk = rk + 1 ;       //zvětšování
