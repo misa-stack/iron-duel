@@ -130,6 +130,10 @@ int main(int argc, char** argv)
 			barva(100,255,118);
 			trojuhelnik(740,15,745,30,735,30);
 		}
+		if(naboj==3)
+		{
+		barva(100,255,118);
+		}
 
 		/* konec kresleni */
 		obrazovka->aktualizuj();
