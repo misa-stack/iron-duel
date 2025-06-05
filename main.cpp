@@ -146,7 +146,7 @@ int main(int argc, char** argv)
 			{
 				bod(726+t,30-sqrt(14*14-t*t));
 			}
-			kruh(726,10,5);
+			kruh(721,15,5);
 		}
 
 		/* konec kresleni */
