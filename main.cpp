@@ -9,10 +9,19 @@
 #include "raketa.h"
 #include "vybuch.h"
 #include "hopik.h"
+#include "bomba.h"
+
 void kometa(int x, int y,int r)
 {
 	kruh(x,y,r);
 }
+
+std::list<strela*> strely;
+std::list<strela*>::iterator s;
+
+std::list<vybuch*> vybuchy;
+std::list<vybuch*>::iterator v;
+
 int main(int argc, char** argv)
 {
 	Obrazovka* obrazovka = Obrazovka::instance();
@@ -22,12 +31,6 @@ int main(int argc, char** argv)
 	int rychlay = 200; //nastavuji zakladni pozici strel
 	int basex = 100; //nastavuji zakladni pozici strel
 	int basey = 200; //nastavuji zakladni pozici strel
-	//vybuch *v = NULL;
-	std::list<vybuch*> vybuchy;
-	std::list<vybuch*>::iterator v;
-	//strela*s = NULL;
-	std::list<strela*> strely;
-	std::list<strela*>::iterator s;
 	Krajina k;
 	Pozadi pozadi;
 	Obrazek zbranraketa;
@@ -166,6 +169,11 @@ int main(int argc, char** argv)
 			}
 			kruh(721,15,5);
 		}
+		if (naboj==4)
+		{
+			barva(100,255,118);
+
+		}
 
 		/* konec kresleni */
 		obrazovka->aktualizuj();
@@ -221,6 +229,10 @@ int main(int argc, char** argv)
 				case SDLK_KP3:
 					naboj=3;
 					break;
+				case SDLK_4:
+				case SDLK_KP4:
+					naboj=4;
+					break;
 				case SDLK_ESCAPE:
 					SDL_Quit();
 					return 0;
@@ -228,15 +240,19 @@ int main(int argc, char** argv)
 					{
 						if (naboj==1)
 						{
-							strely.push_back(new strela((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
+							strely.push_back(new strela((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
 						}
 						if (naboj==2)
 						{
-							strely.push_back(new raketa((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
+							strely.push_back(new raketa((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
 						}
 						if(naboj==3)
 						{
-							strely.push_back(new hopik((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
+							strely.push_back(new hopik((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
+						}
+						if(naboj==4)
+						{
+							strely.push_back(new bomba((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
 						}
 
 						a++;
