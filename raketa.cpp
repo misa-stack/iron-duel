@@ -6,13 +6,12 @@
 
 #define DEG2RAD(x) (x / 180.0 * M_PI)
 
-raketa::raketa(float x,float y): strela(x, y)
+raketa::raketa(float uhel, float prach, float x,float y): strela(uhel, prach, x, y)
 {
 	//nastavuji natoceni a rychlost strely
 	natoceni = 0;
-	vx = 4;
-	vy = -3;
 	ay = 0.1;
+	vel=50;
 
 }
 void raketa::kresli(){

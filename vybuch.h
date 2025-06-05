@@ -6,10 +6,11 @@
 class vybuch
 {
 public:
-	vybuch(int x, int y);
+	vybuch(int x, int y, int ve);
 	int rk;
 	int xk;
 	int yk;
+	int velikost;
 	bool zvetsovanikonec;
 	bool kresli(Krajina &k);
 };

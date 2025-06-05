@@ -5,11 +5,11 @@
 #include "krajina.h"
 #include "vybuch.h"
 #include <math.h>
-vybuch::vybuch(int x, int y): xk(x), yk(y)
+vybuch::vybuch(int x, int y, int ve): xk(x), yk(y)
 {
-
 	rk = 1;
 	zvetsovanikonec= false;
+	velikost = ve;
 }
 
 bool vybuch::kresli(Krajina &k)
@@ -25,7 +25,7 @@ bool vybuch::kresli(Krajina &k)
 		{
 			k.vyzobni(xk+z,yk+v);
 			k.vyzobni(xk-z,yk+v);
-			barva(255, sqrt(v*v+z*z)/rk*250, 0);
+			barva(255, sqrt(v*v+z*z)/rk*-255, 0);
 			bod(xk+z,yk+v);
 			bod(xk-z,yk+v);
 		}
@@ -34,19 +34,19 @@ bool vybuch::kresli(Krajina &k)
 	}
 
 
-	if (rk < 30 && rk > 0)          //velikost výbuchu
+	if (rk < velikost && rk > 0)          //velikost výbuchu
 	{
 		if (zvetsovanikonec == false){
-			if (rk < 29 && rk > 0) {
+			if (rk < velikost-1 && rk > 0) {
 				rk = rk + 1 ;       //zvětšování
-				if (rk == 28)
+				if (rk == velikost-2)
 					zvetsovanikonec = true;
 			}
 		}
 
 		if (zvetsovanikonec == true){
 
-			if (rk < 30 && rk > 0) {
+			if (rk < velikost && rk > 0) {
 				rk = rk -1 ;
 				if(rk == 0)
 					return true;

@@ -8,6 +8,7 @@
 #include "tank.h"
 #include "raketa.h"
 #include "vybuch.h"
+#include "hopik.h"
 void kometa(int x, int y,int r)
 {
 	kruh(x,y,r);
@@ -21,7 +22,12 @@ int main(int argc, char** argv)
 	int rychlay = 200; //nastavuji zakladni pozici strel
 	int basex = 100; //nastavuji zakladni pozici strel
 	int basey = 200; //nastavuji zakladni pozici strel
-	vybuch *v = NULL;
+	//vybuch *v = NULL;
+	std::list<vybuch*> vybuchy;
+	std::list<vybuch*>::iterator v;
+	//strela*s = NULL;
+	std::list<strela*> strely;
+	std::list<strela*>::iterator s;
 	Krajina k;
 	Pozadi pozadi;
 	Obrazek zbranraketa;
@@ -36,7 +42,7 @@ int main(int argc, char** argv)
 		tanky.push_back(new Tank);
 	}
 
-	strela*s=NULL;
+
 	enum Stav {
 		nic,
 		//	zamerovani,
@@ -89,9 +95,13 @@ int main(int argc, char** argv)
 		momentalnizbran.kresli();
 
 		//kresleni vybuchu a padani krajiny
-		if(v)
+
+
+
+		for(v = vybuchy.begin(); v != vybuchy.end(); v++)
 		{
-			if(v->kresli(k) == true)
+
+			if((*v)->kresli(k) == true)
 				stav = padani;
 		}
 		if(stav == padani)
@@ -99,15 +109,15 @@ int main(int argc, char** argv)
 				stav = nic;
 
 
-
-
-		if(s)
+		for(s = strely.begin(); s != strely.end(); s++)
 		{
-			s->kresli();
-			if(s->pohni(&k))
+			(*s)->kresli();
+			if((*s)->pohni(&k))
 			{
-				v = new vybuch(s->x,s->y);
-				s = NULL;
+				vybuchy.push_back(new vybuch((*s)->x,(*s)->y,(*s)->vel));
+				delete (*s);
+				s = strely.erase(s);
+				s--;
 			}
 		}
 
@@ -138,6 +148,23 @@ int main(int argc, char** argv)
 		{
 			barva(100,255,118);
 			trojuhelnik(740,15,745,30,735,30);
+		}
+		if (naboj==3)
+		{
+			barva(100,255,118);
+			for(int t=0; t<14; t++)
+			{
+				bod(750+t,30-sqrt(14*14-t*t));
+			}
+			for(int t=0; t<14; t++)
+			{
+				bod(750-t,30-sqrt(14*14-t*t));
+			}
+			for(int t=0; t<14; t++)
+			{
+				bod(726+t,30-sqrt(14*14-t*t));
+			}
+			kruh(726,10,5);
 		}
 
 		/* konec kresleni */
@@ -190,21 +217,27 @@ int main(int argc, char** argv)
 				case SDLK_KP2:
 					naboj=2;
 					break;
+				case SDLK_3:
+				case SDLK_KP3:
+					naboj=3;
+					break;
 				case SDLK_ESCAPE:
 					SDL_Quit();
 					return 0;
 				case SDLK_SPACE:
-					if (s == NULL)
 					{
 						if (naboj==1)
 						{
-							s = new strela((*a)->x+20*2*cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel));
+							strely.push_back(new strela((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
 						}
-						else
-							s = new raketa((*a)->x+20*2*cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel));
-
-						s->vx=(*a)->prach/3*cos((*a)->uhel);
-						s->vy=(*a)->prach/3*sin((*a)->uhel);
+						if (naboj==2)
+						{
+							strely.push_back(new raketa((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
+						}
+						if(naboj==3)
+						{
+							strely.push_back(new hopik((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
+						}
 
 						a++;
 						if (a == tanky.end()) a = tanky.begin();
