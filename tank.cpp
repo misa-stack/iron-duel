@@ -4,8 +4,8 @@
 
 Tank::Tank()
 {
-	x=400;
-	y=300;
+	x=0;
+	y=0;
 	uhel=5;
 	rk=20;
 	o=0.01;
@@ -16,8 +16,8 @@ Tank::Tank()
 
 }
 
-void Tank::kresli()
-{
+void Tank::kresli(bool aktivni)
+{		
 	barva(r, g, b);
 	for(int t=0; t<rk; t++)
 	{
@@ -32,15 +32,28 @@ void Tank::kresli()
 	obdelnik(x-rk, y, x+rk, y+rk/2 );
 	cara(x, y, x+rk*2* cos(uhel), y+rk*2*sin(uhel));
 
+	if(aktivni) //kresli caru sily vystreli
+	{
+		barva(BILA);
+		for (int a=0; a<5; a++)
+		{
+			cara(x-20, y-45-a, x-20+prach, y-45-a);
+		}
+	}
+
+	else //kresli hp bar
+	{
+		barva(CERVENA);
+		for (int a=0; a<5; a++)
+		{
+			cara(x-20, y-45-a, x-20+zivoty/2.5, y-45-a);
+		}
+	}
 }
 
 void Tank::naloz()
 {
-	barva(BILA);
-	for (int a=0; a<5; a++)
-	{
-		cara(x-20, y-45-a, x-20+prach, y-45-a);
-	}
+
 
 }
 
@@ -67,7 +80,12 @@ void Tank::vpravo()
 
 void Tank::umisti(int xu, int yu)
 {
+	if (yu == y+1)
+	{
+		zivoty = zivoty -1;
+	}
 	x=xu;
 	y=yu;
+
 }
 

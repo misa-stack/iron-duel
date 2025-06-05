@@ -34,10 +34,13 @@ int main(int argc, char** argv)
 	Obrazek zbrankanon;
 	Obrazek momentalnizbran;
 	Menu hlavni;
-	int tah=0;
 	int naboj=1;
-
-	Tank tank[2];
+	int pocethracu=5;
+	std::list<Tank*> tanky;
+	for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
+	{
+		tanky.push_back(new Tank);
+	}
 
 
 	enum Stav {
@@ -48,6 +51,7 @@ int main(int argc, char** argv)
 		padani,
 	};
 	enum Stav stav = nic;
+	auto a = tanky.begin();
 	while(1)
 	{
 		//t1 = SDL_GetTicks();
@@ -56,10 +60,15 @@ int main(int argc, char** argv)
 		/* zacatek kresleni */
 		//srand(1258);
 
-		int a=tah;
 
-		tank[1].umisti(130, k.kdeJeHlina(130));
-		tank[0].umisti(670, k.kdeJeHlina(670));
+		//rozmistuje tanky(snad pro libovolny pocet hracu)
+		int i = 0;
+		for (auto jakyumistuju: tanky)
+		{
+			int mezeraodokraje = 800 / pocethracu / 2;
+			jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
+			i++;
+		}
 
 
 		// if( k.jeHlina(rychla.x,rychla.y) == 1){
@@ -112,11 +121,20 @@ int main(int argc, char** argv)
 			}
 		}
 
-
-		tank[1].kresli();
-		tank[0].kresli();
-		tank[a].naloz();
-
+		//kresli tanky (snad pro libovolny pocet hracu)
+		for (auto jakykreslim = tanky.begin(); jakykreslim != tanky.end(); jakykreslim++)
+		{
+			if((*jakykreslim)->zivoty == 0)
+			{
+				delete *jakykreslim;
+				jakykreslim = tanky.erase(jakykreslim);
+				jakykreslim--;
+			}
+		}
+		for (auto jakykreslim: tanky)
+		{
+			jakykreslim->kresli(jakykreslim == *a);
+		}
 
 
 
@@ -155,29 +173,29 @@ int main(int argc, char** argv)
 		Uint8* key = SDL_GetKeyState(NULL);
 		if(key[SDLK_LEFT])
 		{
-			tank[a].vlevo();
+			(*a)->vlevo();
 		}
 		if(key[SDLK_RIGHT])
 		{
-			tank[a].vpravo();
+			(*a)->vpravo();
 		}
 		if(key[SDLK_DOWN])
 		{
-			if(tank[a].prach<0.1)
+			if((*a)->prach<0.1)
 			{
-				tank[a].prach=0;
+				(*a)->prach=0;
 			}
 			else
-				tank[a].prach-=0.3;
+				(*a)->prach-=0.3;
 		}
 		if(key[SDLK_UP])
 		{
-			if(tank[a].prach>40)
+			if((*a)->prach>40)
 			{
-				tank[a].prach=40;
+				(*a)->prach=40;
 			}
 			else
-				tank[a].prach+=0.3;
+				(*a)->prach+=0.3;
 		}
 
 		SDL_Event event;
@@ -210,24 +228,20 @@ int main(int argc, char** argv)
 					{
 						if (naboj==1)
 						{
-							strely.push_back(new strela(tank[a].uhel, tank[a].prach/3, tank[a].x, tank[a].y));
+							strely.push_back(new strela((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
 						}
 						if (naboj==2)
 						{
-							strely.push_back(new raketa(tank[a].uhel, tank[a].prach/3, tank[a].x, tank[a].y));
+							strely.push_back(new raketa((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
 						}
 						if(naboj==3)
 						{
-							strely.push_back(new hopik(tank[a].uhel, tank[a].prach/3, tank[a].x, tank[a].y));
+							strely.push_back(new hopik((*a)->uhel, (*a)->prach/3, (*a)->x, (*a)->y));
 						}
 
+						a++;
+						if (a == tanky.end()) a = tanky.begin();
 
-						if (tah==1)
-						{
-							tah--;
-						}
-						else
-							tah++;
 						break;
 					}
 				}
