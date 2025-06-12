@@ -2,15 +2,22 @@
 #include <SDL/SDL.h>
 #include "pozadi.h"
 #include "grafika.h"
+#include "vybuch.h"
 
-strela::strela(float x,float y): x(x), y(y)
+strela::strela(float uhel, float prach, float x,float y): x(x), y(y)
 {
-    ay = 0.1;
+	ay = 0.1;
 	//zada rychlost strely
+	vel=30;
+	vx=prach*cos(uhel);
+	vy=prach*sin(uhel);
+	x+20*2*cos(uhel);
+	y+20*2*sin(uhel);
+
 }
 void strela::kresli(){
 
-// maluju strelu
+	// maluju strelu
 	barva(100,255,118);
 
 	kruh(x,y,3);
@@ -18,18 +25,19 @@ void strela::kresli(){
 }
 bool strela::pohni(Krajina *k){
 
-//hejbu se strelou
+	//hejbu se strelou
 	x= x + vx;
 	y= y + vy;
 	vy= vy+ ay;
-    if(k->jeHlina(x, y))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	if(k->jeHlina(x, y))
+	{
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 
 
 

@@ -34,8 +34,8 @@ void Pozadi::pohni()
 void Pozadi::kresli()
 
 {
-    srand(8);
-    //maluju pozadi nocni oblohy
+	srand(8);
+	//maluju pozadi nocni oblohy
 	if (u == 1){
 		for(int i = 1;i < 600;i++){
 			barva(0,0,i/8);
@@ -75,7 +75,7 @@ void Pozadi::kresli()
 	}
 }
 void Pozadi::zmenu(){
-//prikaz jenz meni pozadi
+	//prikaz jenz meni pozadi
 
 	u++;
 	if ( u == 3)

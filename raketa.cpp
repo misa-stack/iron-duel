@@ -6,17 +6,16 @@
 
 #define DEG2RAD(x) (x / 180.0 * M_PI)
 
-raketa::raketa(float x,float y): strela(x, y)
+raketa::raketa(float uhel, float prach, float x,float y): strela(uhel, prach, x, y)
 {
 	//nastavuji natoceni a rychlost strely
 	natoceni = 0;
-	vx = 4;
-	vy = -3;
 	ay = 0.1;
+	vel=50;
 
 }
 void raketa::kresli(){
-//udavam pozici a natoceni rakety a nasledni ji kreslim
+	//udavam pozici a natoceni rakety a nasledni ji kreslim
 	natoceni = atan2(y-sy,x-sx) - M_PI / 2;
 	barva(100,255,118);
 	bod(x + 10 * cos(DEG2RAD(90) + natoceni), y + 10 * sin(DEG2RAD(90) + natoceni));
@@ -27,13 +26,9 @@ void raketa::kresli(){
 		    x + 10 * cos(DEG2RAD(240) + natoceni), y + 10 * sin(DEG2RAD(240) + natoceni),
 		    x + 10 * cos(DEG2RAD(300) + natoceni), y + 10 * sin(DEG2RAD(300) + natoceni));
 }
-void raketa::pohni(){
-//raketa se hybe
+bool raketa::pohni(Krajina*k){
+	//raketa se potrebuje natocit, jinak se hybe jako strela
 	sx = x;
 	sy = y;
-
-	x= x + vx;
-	y= y + vy;
-
-	vy= vy+ ay;
+	return strela::pohni(k);
 }

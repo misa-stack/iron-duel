@@ -6,12 +6,13 @@
 class vybuch
 {
 public:
-	vybuch(int x, int y);
+	vybuch(int x, int y, int ve);
 	int rk;
 	int xk;
 	int yk;
+	int velikost;
 	bool zvetsovanikonec;
-	void kresli(Krajina &k);
+	bool kresli(Krajina &k);
 };
 
 #endif // VYBUCH_H

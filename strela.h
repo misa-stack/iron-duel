@@ -6,14 +6,15 @@
 class strela
 {
 public:
-	strela(float x,float y);
+	strela(float uhel, float prach, float x, float y);
 	float vy;
 	float vx;
 	float ay;
 	float x;
 	float y;
-    virtual void kresli();
-    virtual bool pohni(Krajina *k);
+	int vel;
+	virtual void kresli();
+	virtual bool pohni(Krajina *k);
 };
 
 #endif // STRELA_H

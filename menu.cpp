@@ -20,7 +20,7 @@ Tlacitko::Tlacitko(const char* nazev, std::function<void()> funkce)
 void Tlacitko::kresli(int x1, int y1, int x2, int y2)
 {
 
-
+	barva(BILA);
 	obdelnik(x1,y1,x2,y2);
 
 	cislapismenamalaivelka.umisti(x1+5,y1);

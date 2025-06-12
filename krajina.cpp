@@ -5,19 +5,19 @@
 
 Krajina::Krajina()
 {
-    typ = rand() % 3;
-    if(typ == 0)
-    {
-        kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
-    }
-    if (typ ==1)
-    {
-        hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
-    }
-    if (typ == 2)
-    {
-        poust(0,nahoda(400)+200,799,nahoda(400)+200);
-    }
+	typ = rand() % 3;
+	if(typ == 0)
+	{
+		kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
+	}
+	if (typ ==1)
+	{
+		hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
+	}
+	if (typ == 2)
+	{
+		poust(0,nahoda(400)+200,799,nahoda(400)+200);
+	}
 }
 
 // void terencara(int x1, int y1, int x2, int y2)
@@ -45,12 +45,12 @@ void Krajina::mojecara(int x1, int y1, int x2, int y2)
 	float y = y1;
 	float k = float(y2-y1)/float(x2-x1);
 
-    for(int x = x1; x < x2; x++)
+	for(int x = x1; x < x2; x++)
 	{
-        for(int filly = 0; filly < 600; filly++)
-            mapa [x][filly] = filly >= y ? 1 : 0;
-        y += k;
-    }
+		for(int filly = 0; filly < 600; filly++)
+			mapa [x][filly] = filly >= y ? 1 : 0;
+		y += k;
+	}
 }
 void Krajina::kopec(int x1, int y1, int x2, int y2)
 {
@@ -117,40 +117,71 @@ void Krajina::kresli()
 {
 
 
-    if(typ == 0) barva(65,152,10);
-    if(typ == 1) barva(130,130,130);
-    if(typ == 2) barva(223,226,127);
+	if(typ == 0) barva(65,152,10);
+	if(typ == 1) barva(130,130,130);
+	if(typ == 2) barva(223,226,127);
 
-    for (int x = 0; x < 799; x ++)
-        for (int y = 0; y < 599; y++)
-        {
-            if (mapa [x][y] == 1)
-                bod(x,y);
-        }
+	for (int x = 0; x < 799; x ++)
+		for (int y = 0; y < 599; y++)
+		{
+			if (mapa [x][y] == 1)
+				bod(x,y);
+		}
 
 }
 
 // zjistuje jestli na danem bode je nebo není krajina
 bool Krajina::jeHlina(int x, int y)
 {
-    return mapa [x][y] == 1;
+	if(y > 599) return true;
+
+	if(x < 0 && y < 600 || x > 799 && y < 600 || y < 0)
+		return false;
+
+	return mapa [x][y] == 1;
 }
 
 //zjistuje vysku krajiny na dane x souradnici
 int Krajina::kdeJeHlina(int x)
 {
-    for (int y = 0; y < 600; y++)
-    {
-        if (mapa [x][y] == 1)
-            return y;
-    }
-    return 0;
+	if(x<800)
+	{
+	for (int y = 0; y < 600; y++)
+	{
+		if (mapa [x][y] == 1)
+			return y;
+	}
+	}
+	return 599;
 }
 
 // zmeni dany bod v mape na 0 (tzn. pozadi)
 void Krajina::vyzobni(int x, int y)
 {
-    mapa [x][y] = 0;
+	if(x >= 0 && x < 800 && y >= 0 && y < 600)
+		mapa [x][y] = 0;
 }
+
+//dela padani prevysle krajiny po vybuchu, "pohnuto" znaci, jestli jeste nejake pixely mohou spadnout nebo ne
+bool Krajina::padej()
+{
+	bool pohnuto = false;
+	for (int x = 0; x < 799; x++)
+	{
+		for (int y = 598; y >= 0; y--)
+		{
+			if (mapa [x][y] == 1 && mapa [x][y+1] == 0)
+			{
+				mapa [x][y] = 0;
+				mapa [x][y+1] = 1;
+				pohnuto = true;
+			}
+		}
+	}
+	return !pohnuto;
+}
+
+
+
 
 

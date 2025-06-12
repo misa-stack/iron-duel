@@ -5,13 +5,14 @@
 class Tank
 {
 public:
-    float x, y, uhel, rk, o, r, g, b, prach;
-    Tank();
-    void kresli();
-    void vlevo();
-    void vpravo();
-    void umisti(int xu, int yu);
-    void naloz();
+	float x, y, uhel, rk, o, r, g, b, prach;
+	int zivoty = 100;
+	Tank();
+	void kresli(bool aktivni);
+	void vlevo();
+	void vpravo();
+	void umisti(int xu, int yu);
+	void naloz();
 };
 
 #endif // TANK_H
