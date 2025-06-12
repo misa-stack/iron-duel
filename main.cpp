@@ -172,7 +172,9 @@ int main(int argc, char** argv)
 		if (naboj==4)
 		{
 			barva(100,255,118);
-
+			kruh(750,15,5);
+			kruh(730,15,5);
+			kruh(770,15,5);
 		}
 
 		/* konec kresleni */
