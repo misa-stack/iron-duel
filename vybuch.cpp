@@ -4,7 +4,11 @@
 #include "grafika.h"
 #include "krajina.h"
 #include "vybuch.h"
+#include "tank.h"
 #include <math.h>
+
+extern std::list<Tank*> tanky;
+
 vybuch::vybuch(int x, int y, int ve): xk(x), yk(y)
 {
 	rk = 1;
@@ -28,6 +32,11 @@ bool vybuch::kresli(Krajina &k)
 			barva(255, sqrt(v*v+z*z)/rk*-255, 0);
 			bod(xk+z,yk+v);
 			bod(xk-z,yk+v);
+
+			for (auto zasazeny: tanky)
+				if ((zasazeny->x == xk+z || zasazeny->x == xk-z) && zasazeny->y == yk+v)
+					zasazeny->zivoty --;
+
 		}
 
 

@@ -16,9 +16,9 @@ void kometa(int x, int y,int r)
 	kruh(x,y,r);
 }
 
+std::list<Tank*> tanky;
 std::list<strela*> strely;
 std::list<strela*>::iterator s;
-
 std::list<vybuch*> vybuchy;
 std::list<vybuch*>::iterator v;
 
@@ -39,7 +39,6 @@ int main(int argc, char** argv)
 	Menu hlavni;
 	int naboj=1;
 	int pocethracu=5;
-	std::list<Tank*> tanky;
 	for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
 	{
 		tanky.push_back(new Tank);
