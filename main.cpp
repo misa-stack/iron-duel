@@ -34,6 +34,20 @@ Menu hlavni;
     Tank tank[2];
     tank[1].umisti(130, k.kdeJeHlina(130));
     tank[0].umisti(670, k.kdeJeHlina(670));
+	Menu hlavni;
+	hlavni.pridej(new Tlacitko("nova hra", [](){
+
+	}));
+	hlavni.pridej(new Tlacitko("uvitaci video", [](){
+
+	}));
+	hlavni.pridej(new Tlacitko("konec hry", [](){
+		SDL_Quit();
+		return 0;
+
+	}));
+
+
 
     strela*s=NULL;
 
