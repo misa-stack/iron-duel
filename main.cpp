@@ -126,11 +126,19 @@ int main(int argc, char** argv)
 		//kresli tanky (snad pro libovolny pocet hracu)
 		for (auto jakykreslim = tanky.begin(); jakykreslim != tanky.end(); jakykreslim++)
 		{
-			if((*jakykreslim)->zivoty == 0)
+			if((*jakykreslim)->zivoty <= 0)
 			{
+				vybuchy.push_back(new vybuch((*jakykreslim)->x, (*jakykreslim)->y, 40));
+				if((*jakykreslim) == *a)
+				{
+					a++;
+					if (a == tanky.end()) a = tanky.begin();
+				}
 				delete *jakykreslim;
 				jakykreslim = tanky.erase(jakykreslim);
 				jakykreslim--;
+
+
 			}
 		}
 		for (auto jakykreslim: tanky)
