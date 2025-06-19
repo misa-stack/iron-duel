@@ -54,6 +54,13 @@ int main(int argc, char** argv)
 	};
 	enum Stav stav = nic;
 	auto a = tanky.begin();
+	int i = 0;
+	for (auto jakyumistuju: tanky)
+	{
+		int mezeraodokraje = 800 / pocethracu / 2;
+		jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
+		i++;
+	}
 	while(1)
 	{
 		//t1 = SDL_GetTicks();
@@ -64,12 +71,9 @@ int main(int argc, char** argv)
 
 
 		//rozmistuje tanky(snad pro libovolny pocet hracu)
-		int i = 0;
 		for (auto jakyumistuju: tanky)
 		{
-			int mezeraodokraje = 800 / pocethracu / 2;
-			jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
-			i++;
+			jakyumistuju->umisti(jakyumistuju->x, k.kdeJeHlina(jakyumistuju->x));
 		}
 
 
