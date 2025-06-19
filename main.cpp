@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 	Obrazek zbranraketa;
 	Obrazek zbrankanon;
 	Obrazek momentalnizbran;
-	Menu hlavni;
+
 	int naboj=1;
 	int pocethracu=5;
 	for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
@@ -44,6 +44,18 @@ int main(int argc, char** argv)
 		tanky.push_back(new Tank);
 	}
 
+	Menu hlavni;
+	hlavni.pridej(new Tlacitko("nova hra", [](){
+
+	}));
+	hlavni.pridej(new Tlacitko("uvitaci video", [](){
+
+	}));
+	hlavni.pridej(new Tlacitko("konec hry", [](){
+		SDL_Quit();
+		return 0;
+
+	}));
 
 	enum Stav {
 		nic,
@@ -222,6 +234,9 @@ int main(int argc, char** argv)
 		{
 			switch(event.type)
 			{
+			case SDL_MOUSEBUTTONDOWN:
+				hlavni.klik(event.button.x, event.button.y);
+				break;
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym)
 				{
