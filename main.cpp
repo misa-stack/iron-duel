@@ -36,18 +36,40 @@ int main(int argc, char** argv)
 	Obrazek zbranraketa;
 	Obrazek zbrankanon;
 	Obrazek momentalnizbran;
-
+	bool zakladni_menu = true;
+	bool vyberove_menu = false;
+	bool hra = false;
 	int naboj=1;
 	int pocethracu=5;
-	for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
-	{
-		tanky.push_back(new Tank);
-	}
+
+
+	Menu vyberove_na_hru;
+	vyberove_na_hru.pridej(new Tlacitko("pocet hracu 0",[&] (){
+		pocethracu = 0;
+	}));
+	vyberove_na_hru.pridej(new Tlacitko("pocet hracu 1",[&] (){
+		pocethracu = 1;
+	}));
+	vyberove_na_hru.pridej(new Tlacitko("pocet hracu 2",[&] (){
+		pocethracu = 2;
+	}));
+	vyberove_na_hru.pridej(new Tlacitko("pocet hracu 3",[&] (){
+		pocethracu = 3;
+	}));
+	vyberove_na_hru.pridej(new Tlacitko("pocet hracu 4",[&] (){
+		pocethracu = 4;
+	}));
+	vyberove_na_hru.pridej(new Tlacitko("zacit hru",[&] (){
+	hra = true;
+	}));
 
 	Menu hlavni;
-	hlavni.pridej(new Tlacitko("nova hra", [](){
+	hlavni.pridej(new Tlacitko("nova hra", [&](){
+		zakladni_menu = false;
+		vyberove_menu = true;
 
 	}));
+
 	hlavni.pridej(new Tlacitko("uvitaci video", [](){
 
 	}));
@@ -157,10 +179,23 @@ int main(int argc, char** argv)
 		{
 			jakykreslim->kresli(jakykreslim == *a);
 		}
+		if (hra = true){
+			vyberove_menu = false;
+			zakladni_menu = false;
+		}
+
+		if(zakladni_menu == true)
+			hlavni.kresli();
+
+		if(vyberove_menu == true)
+			vyberove_na_hru.kresli();
 
 
+		for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
+		{
+			tanky.push_back(new Tank);
+		}
 
-		hlavni.kresli();
 		if (naboj==1)
 		{
 			barva(100,255,118);
