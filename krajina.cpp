@@ -5,6 +5,7 @@
 
 Krajina::Krajina()
 {
+	srand(time(NULL));
 	typ = rand() % 3;
 	if(typ == 0)
 	{
