@@ -17,6 +17,7 @@ void kometa(int x, int y,int r)
 }
 
 std::list<Tank*> tanky;
+std::list<Tank*>::iterator a;
 std::list<strela*> strely;
 std::list<strela*>::iterator s;
 std::list<vybuch*> vybuchy;

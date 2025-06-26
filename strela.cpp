@@ -3,6 +3,13 @@
 #include "pozadi.h"
 #include "grafika.h"
 #include "vybuch.h"
+#include <list>
+#include "tank.h"
+
+extern std::list<Tank*> tanky;
+extern std::list<Tank*>::iterator a;
+extern std::list<strela*> strely;
+extern std::list<strela*>::iterator s;
 
 strela::strela(float uhel, float prach, float x,float y): x(x), y(y)
 {
@@ -31,15 +38,19 @@ bool strela::pohni(Krajina *k){
 	vy= vy+ ay;
 	if(k->jeHlina(x, y))
 	{
-
 		return true;
 	}
 	else
 	{
 		return false;
 	}
-
-
+	for(a = tanky.begin(); a != tanky.end(); a++)
+	{
+		if (sqrt ((*s)->x * (*s)->x + (*s)->y * (*s)->y)< (*a)->rk)
+			return true;
+		else
+			return false;
+	}
 
 
 }
