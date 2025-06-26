@@ -388,6 +388,11 @@ void Pismo::kresli(const char *text)
 
 	for(i = 0; i < strlen(text); i++)
 	{
+		if(text[i] == ' ')
+		{
+			x+=5;
+			continue;
+		}
 		for(j = 0; j < this->pocet; j++)
 		{
 			if(this->znaky[j] == text[i])

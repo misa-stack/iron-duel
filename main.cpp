@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 	Obrazek zbranraketa;
 	Obrazek zbrankanon;
 	Obrazek momentalnizbran;
-	Menu hlavni;
+
 	int naboj=1;
 	int pocethracu=5;
 	for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
@@ -45,6 +45,18 @@ int main(int argc, char** argv)
 		tanky.push_back(new Tank);
 	}
 
+	Menu hlavni;
+	hlavni.pridej(new Tlacitko("nova hra", [](){
+
+	}));
+	hlavni.pridej(new Tlacitko("uvitaci video", [](){
+
+	}));
+	hlavni.pridej(new Tlacitko("konec hry", [](){
+		SDL_Quit();
+		return 0;
+
+	}));
 
 	enum Stav {
 		nic,
@@ -55,6 +67,13 @@ int main(int argc, char** argv)
 	};
 	enum Stav stav = nic;
 	auto a = tanky.begin();
+	int i = 0;
+	for (auto jakyumistuju: tanky)
+	{
+		int mezeraodokraje = 800 / pocethracu / 2;
+		jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
+		i++;
+	}
 	while(1)
 	{
 		//t1 = SDL_GetTicks();
@@ -65,12 +84,9 @@ int main(int argc, char** argv)
 
 
 		//rozmistuje tanky(snad pro libovolny pocet hracu)
-		int i = 0;
 		for (auto jakyumistuju: tanky)
 		{
-			int mezeraodokraje = 800 / pocethracu / 2;
-			jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
-			i++;
+			jakyumistuju->umisti(jakyumistuju->x, k.kdeJeHlina(jakyumistuju->x));
 		}
 
 
@@ -127,11 +143,19 @@ int main(int argc, char** argv)
 		//kresli tanky (snad pro libovolny pocet hracu)
 		for (auto jakykreslim = tanky.begin(); jakykreslim != tanky.end(); jakykreslim++)
 		{
-			if((*jakykreslim)->zivoty == 0)
+			if((*jakykreslim)->zivoty <= 0)
 			{
+				vybuchy.push_back(new vybuch((*jakykreslim)->x, (*jakykreslim)->y, 40));
+				if((*jakykreslim) == *a)
+				{
+					a++;
+					if (a == tanky.end()) a = tanky.begin();
+				}
 				delete *jakykreslim;
 				jakykreslim = tanky.erase(jakykreslim);
 				jakykreslim--;
+
+
 			}
 		}
 		for (auto jakykreslim: tanky)
@@ -213,6 +237,9 @@ int main(int argc, char** argv)
 		{
 			switch(event.type)
 			{
+			case SDL_MOUSEBUTTONDOWN:
+				hlavni.klik(event.button.x, event.button.y);
+				break;
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym)
 				{
