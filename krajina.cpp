@@ -131,6 +131,30 @@ void Krajina::kresli()
 
 }
 
+void Krajina::zmena()
+{
+	typ++;
+	srand(time(NULL));
+	if ( typ == 3)
+	{
+		typ = 0;
+	}
+	if(typ == 0)
+	{
+		kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
+	}
+	if (typ ==1)
+	{
+		hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
+	}
+	if (typ == 2)
+	{
+		poust(0,nahoda(400)+200,799,nahoda(400)+200);
+	}
+}
+
+
+
 // zjistuje jestli na danem bode je nebo není krajina
 bool Krajina::jeHlina(int x, int y)
 {

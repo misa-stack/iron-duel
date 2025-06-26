@@ -38,16 +38,18 @@ int main(int argc, char** argv)
 	Obrazek zbrankanon;
 	Obrazek momentalnizbran;
 
+
+
 	int naboj=1;
 	int pocethracu=5;
 	for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
 	{
 		tanky.push_back(new Tank);
 	}
-
+	int n=1;
 	Menu hlavni;
-	hlavni.pridej(new Tlacitko("nova hra", [](){
-
+	hlavni.pridej(new Tlacitko("nova hra", [&](){
+		n=0;
 	}));
 	hlavni.pridej(new Tlacitko("uvitaci video", [](){
 
@@ -55,8 +57,49 @@ int main(int argc, char** argv)
 	hlavni.pridej(new Tlacitko("konec hry", [](){
 		SDL_Quit();
 		return 0;
-
 	}));
+	hlavni.pridej(new Tlacitko("zmena pozadi", [&](){
+		pozadi.zmenu();
+		return 0;
+	}));
+	hlavni.pridej(new Tlacitko("zmena terenu", [&](){
+		k.zmena();
+		return 0;
+	}));
+	hlavni.pridej(new Tlacitko("vice hracu", [&](){
+		pocethracu++;
+		for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
+		{
+			tanky.push_back(new Tank);
+		}
+		int i = 0;
+		for (auto jakyumistuju: tanky)
+		{
+			int mezeraodokraje = 800 / pocethracu / 2;
+			jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
+			i++;
+		}
+		return 0;
+	}));
+	hlavni.pridej(new Tlacitko("mene hracu", [&](){
+		if(pocethracu==2)
+			pocethracu==2;
+		else
+			pocethracu--;
+		for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
+		{
+			tanky.push_back(new Tank);
+		}
+		int i = 0;
+		for (auto jakyumistuju: tanky)
+		{
+			int mezeraodokraje = 800 / pocethracu / 2;
+			jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
+			i++;
+		}
+		return 0;
+	}));
+
 
 	enum Stav {
 		nic,
@@ -83,6 +126,7 @@ int main(int argc, char** argv)
 		//srand(1258);
 
 
+
 		//rozmistuje tanky(snad pro libovolny pocet hracu)
 		for (auto jakyumistuju: tanky)
 		{
@@ -101,12 +145,14 @@ int main(int argc, char** argv)
 
 
 
+
 		//t1 = SDL_GetTicks();
 		obrazovka->smaz();
 
-
 		pozadi.pohni();
 		pozadi.kresli();
+
+
 		k.kresli();
 		//maluji popis jakou strelu pouzivam aby uzivatel vedel jakou momentalne odpaluje
 		momentalnizbran.nacti("momentalnizbran.png");
@@ -164,8 +210,10 @@ int main(int argc, char** argv)
 		}
 
 
-
+		if (n==1)
 		hlavni.kresli();
+		else
+		{
 		if (naboj==1)
 		{
 			barva(100,255,118);
@@ -200,10 +248,11 @@ int main(int argc, char** argv)
 			kruh(730,15,5);
 			kruh(770,15,5);
 		}
-
+		}
 		/* konec kresleni */
 		obrazovka->aktualizuj();
-
+		if (n==0)
+		{
 		Uint8* key = SDL_GetKeyState(NULL);
 		if(key[SDLK_LEFT])
 		{
@@ -231,7 +280,7 @@ int main(int argc, char** argv)
 			else
 				(*a)->prach+=0.3;
 		}
-
+		}
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
@@ -240,12 +289,11 @@ int main(int argc, char** argv)
 			case SDL_MOUSEBUTTONDOWN:
 				hlavni.klik(event.button.x, event.button.y);
 				break;
+			if (n==0)
+			{
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym)
 				{
-				case SDLK_p:
-					pozadi.zmenu();
-					break;
 				case SDLK_1:
 				case SDLK_KP1:
 					naboj=1;
@@ -291,12 +339,16 @@ int main(int argc, char** argv)
 					}
 				}
 				break;
+
+			}
 			}
 			/* konec kresleni */
 			obrazovka->aktualizuj();
 
 		}
 
+
 	}
 
 }
+

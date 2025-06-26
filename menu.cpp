@@ -56,9 +56,10 @@ void Menu::klik(int kx, int ky){
 		if(pocettlacitek > 8)
 			pocettlacitek=8;
 		vzdalenostoddelenitlacitek =(600 - (velikosttlacitekvyska * pocettlacitek))/ (pocettlacitek+1);
-
-		y += vzdalenostoddelenitlacitek ;
-
+		if(i>0)
+			y += vzdalenostoddelenitlacitek  + velikosttlacitekvyska;
+		else
+			y += vzdalenostoddelenitlacitek;
 		if ( i == 8){
 			y = vzdalenostoddelenitlacitek ;
 			x = 300;
@@ -82,9 +83,10 @@ void Menu::kresli(){
 		if(pocettlacitek > 8)
 			pocettlacitek=8;
 		vzdalenostoddelenitlacitek =(600 - (velikosttlacitekvyska * pocettlacitek))/ (pocettlacitek+1);
-
-		y += vzdalenostoddelenitlacitek ;
-
+		if(i>0)
+			y += vzdalenostoddelenitlacitek  + velikosttlacitekvyska;
+		else
+			y += vzdalenostoddelenitlacitek;
 		if ( i == 8){
 			y = vzdalenostoddelenitlacitek ;
 			x = 300;
