@@ -1,6 +1,12 @@
 #include "tank.h"
 #include "grafika.h"
 #include <math.h>
+#include "strela.h"
+#include <SDL/SDL.h>
+#include <list>
+
+extern std::list<Tank*> tanky;
+extern std::list<strela*> strely;
 
 Tank::Tank()
 {
@@ -88,4 +94,5 @@ void Tank::umisti(int xu, int yu)
 	y=yu;
 
 }
+
 
