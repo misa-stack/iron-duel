@@ -9,15 +9,15 @@ Krajina::Krajina()
 	typ = rand() % 3;
 	if(typ == 0)
 	{
-		kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
+        kopec(0, nahoda(400) + 200,800, nahoda(400) + 200);
 	}
 	if (typ ==1)
 	{
-		hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
+        hory(0, nahoda(400) + 200,800, nahoda(400) + 200);
 	}
 	if (typ == 2)
 	{
-		poust(0,nahoda(400)+200,799,nahoda(400)+200);
+        poust(0,nahoda(400)+200,800,nahoda(400)+200);
 	}
 }
 

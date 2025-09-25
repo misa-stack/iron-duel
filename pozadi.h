@@ -5,18 +5,40 @@
 #include "grafika.h"
 #include <list>
 
-class Pozadi
-{
-public:
-	Pozadi();
-	int u;
-	int nahx[20];
-	int nahy[20];
-	int svitivost;
-	float svitivostkometa;
-	void kresli();
-	void pohni();
-	void zmenu();
+#define POZADI_H
+
+#include <SDL/SDL.h>
+
+enum FazeDne {
+    DEN,
+    NOC,
+    VYCHOD,
+    ZAPAD
 };
+
+class Pozadi {
+public:
+    Pozadi();
+
+    void pohni();
+
+    void kresli();
+
+    void aktualizuj();
+
+private:
+    float nahx[50];
+    float nahy[50];
+
+    float uhelSlunce;
+
+    int casovac;
+
+    FazeDne faze;
+
+    float svitivost;
+    float svitivostkometa;
+};
+
 
 #endif // POZADI_H
