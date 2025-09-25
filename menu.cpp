@@ -8,6 +8,7 @@
 #include "vybuch.h"
 #include <list>
 #include <functional>
+;
 
 
 Tlacitko::Tlacitko(const char* nazev, std::function<void()> funkce)
@@ -15,7 +16,7 @@ Tlacitko::Tlacitko(const char* nazev, std::function<void()> funkce)
 
 	this ->funkce = funkce;
 	this ->nazev = nazev;
-	cislapismenamalaivelka.nacti("cislapismenamalaivelka.png", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+    cislapismenamalaivelka.nacti("cislapismenamalaivelka.png", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 }
 void Tlacitko::kresli(int x1, int y1, int x2, int y2)
 {
@@ -32,7 +33,7 @@ Menu::Menu()
 	prvnitlacitko=true;
 	pocettlacitek=0;
 	vzdalenostoddelenitlacitek =0;
-	velikosttlaciteksirka = 100;
+    velikosttlaciteksirka = 150;
 	velikosttlacitekvyska = 50;
 
 }
@@ -71,7 +72,7 @@ void Menu::klik(int kx, int ky){
 
 }
 void Menu::kresli(){
-	int x = 100;
+    int x = 100;
 	int y = 0;
 	int i = 0;
 
@@ -89,7 +90,7 @@ void Menu::kresli(){
 			y += vzdalenostoddelenitlacitek;
 		if ( i == 8){
 			y = vzdalenostoddelenitlacitek ;
-			x = 300;
+            x = 300;
 		}
 		(*t)->kresli(x, y, x + velikosttlaciteksirka, y + velikosttlacitekvyska);
 		i++;
