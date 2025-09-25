@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 		pocethracu = 4;
 	}));
 	vyberove_na_hru.pridej(new Tlacitko("zacit hru",[&] (){
-	hra = true;
+		hra = true;
 	}));
 
 	Menu hlavni;
@@ -85,39 +85,6 @@ int main(int argc, char** argv)
 	}));
 	hlavni.pridej(new Tlacitko("zmena terenu", [&](){
 		k.zmena();
-		return 0;
-	}));
-	hlavni.pridej(new Tlacitko("vice hracu", [&](){
-		pocethracu++;
-		for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
-		{
-			tanky.push_back(new Tank);
-		}
-		int i = 0;
-		for (auto jakyumistuju: tanky)
-		{
-			int mezeraodokraje = 800 / pocethracu / 2;
-			jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
-			i++;
-		}
-		return 0;
-	}));
-	hlavni.pridej(new Tlacitko("mene hracu", [&](){
-		if(pocethracu==2)
-			pocethracu==2;
-		else
-			pocethracu--;
-		for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++)
-		{
-			tanky.push_back(new Tank);
-		}
-		int i = 0;
-		for (auto jakyumistuju: tanky)
-		{
-			int mezeraodokraje = 800 / pocethracu / 2;
-			jakyumistuju->umisti(mezeraodokraje + i * 2 * mezeraodokraje, k.kdeJeHlina(mezeraodokraje + i * 2 * mezeraodokraje));
-			i++;
-		}
 		return 0;
 	}));
 
@@ -227,7 +194,7 @@ int main(int argc, char** argv)
 		}
 		for (auto jakykreslim: tanky)
 		{
-			jakykreslim->kresli(jakykreslim == *a);
+			jakykreslim->kresli(jakykreslim = *a);
 		}
 		if (hra = true){
 			vyberove_menu = false;
@@ -248,46 +215,46 @@ int main(int argc, char** argv)
 
 
 		{
-		if (naboj==1)
-		{
-			barva(100,255,118);
-			kruh(750,20,5);
-		}
-		if (naboj==2)
-		{
-			barva(100,255,118);
-			trojuhelnik(740,15,745,30,735,30);
-		}
-		if (naboj==3)
-		{
-			barva(100,255,118);
-			for(int t=0; t<14; t++)
+			if (naboj==1)
 			{
-				bod(750+t,30-sqrt(14*14-t*t));
+				barva(100,255,118);
+				kruh(750,20,5);
 			}
-			for(int t=0; t<14; t++)
+			if (naboj==2)
 			{
-				bod(750-t,30-sqrt(14*14-t*t));
+				barva(100,255,118);
+				trojuhelnik(740,15,745,30,735,30);
 			}
-			for(int t=0; t<14; t++)
+			if (naboj==3)
 			{
-				bod(726+t,30-sqrt(14*14-t*t));
+				barva(100,255,118);
+				for(int t=0; t<14; t++)
+				{
+					bod(750+t,30-sqrt(14*14-t*t));
+				}
+				for(int t=0; t<14; t++)
+				{
+					bod(750-t,30-sqrt(14*14-t*t));
+				}
+				for(int t=0; t<14; t++)
+				{
+					bod(726+t,30-sqrt(14*14-t*t));
+				}
+				kruh(721,15,5);
 			}
-			kruh(721,15,5);
-		}
-		if (naboj==4)
-		{
-			barva(100,255,118);
-			kruh(750,15,5);
-			kruh(730,15,5);
-			kruh(770,15,5);
-		}
+			if (naboj==4)
+			{
+				barva(100,255,118);
+				kruh(750,15,5);
+				kruh(730,15,5);
+				kruh(770,15,5);
+			}
 		}
 		/* konec kresleni */
 		obrazovka->aktualizuj();
-		if (naboj==0)
-		{
+
 		Uint8* key = SDL_GetKeyState(NULL);
+
 		if(key[SDLK_LEFT])
 		{
 			(*a)->vlevo();
@@ -314,7 +281,6 @@ int main(int argc, char** argv)
 			else
 				(*a)->prach+=0.3;
 		}
-		}
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
@@ -323,24 +289,18 @@ int main(int argc, char** argv)
 			case SDL_MOUSEBUTTONDOWN:
 				hlavni.klik(event.button.x, event.button.y);
 				break;
-			if (naboj==0)
-			{
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym)
 				{
-				case SDLK_1:
 				case SDLK_KP1:
 					naboj=1;
 					break;
-				case SDLK_2:
 				case SDLK_KP2:
 					naboj=2;
 					break;
-				case SDLK_3:
 				case SDLK_KP3:
 					naboj=3;
 					break;
-				case SDLK_4:
 				case SDLK_KP4:
 					naboj=4;
 					break;
@@ -348,41 +308,41 @@ int main(int argc, char** argv)
 					SDL_Quit();
 					return 0;
 				case SDLK_SPACE:
+				{
+					if (naboj==1)
 					{
-						if (naboj==1)
-						{
-							strely.push_back(new strela((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
-						}
-						if (naboj==2)
-						{
-							strely.push_back(new raketa((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
-						}
-						if(naboj==3)
-						{
-							strely.push_back(new hopik((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
-						}
-						if(naboj==4)
-						{
-							strely.push_back(new bomba((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
-						}
-
-						a++;
-						if (a == tanky.end()) a = tanky.begin();
-
-						break;
+						strely.push_back(new strela((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
 					}
-				}
-				break;
+					if (naboj==2)
+					{
+						strely.push_back(new raketa((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
+					}
+					if(naboj==3)
+					{
+						strely.push_back(new hopik((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
+					}
+					if(naboj==4)
+					{
+						strely.push_back(new bomba((*a)->uhel, (*a)->prach/3, (*a)->x+20*2* cos((*a)->uhel), (*a)->y+20*2*sin((*a)->uhel)));
+					}
 
+					a++;
+					if (a == tanky.end()) a = tanky.begin();
+
+					break;
+				}
+				}
 			}
-			}
-			/* konec kresleni */
-			obrazovka->aktualizuj();
+			break;
 
 		}
-
-
 	}
 
 }
+
+
+
+
+
+
 
