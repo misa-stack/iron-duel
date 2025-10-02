@@ -17,7 +17,7 @@ public:
 	void vyzobni(int x, int y);
 	bool padej();
 	int typ;
-	int mapa [800][600];
+    int mapa [1067][600];
 };
 
 #endif // KRAJINA_H

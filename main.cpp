@@ -22,6 +22,7 @@ std::list<strela*> strely;
 std::list<strela*>::iterator s;
 std::list<vybuch*> vybuchy;
 std::list<vybuch*>::iterator v;
+int fpspocet = 30;
 
 enum Stav {
     nic,
@@ -32,7 +33,7 @@ static inline void rozmistitTanky(Krajina& k, int pocethracu)
 {
     if (tanky.empty()) return;
 
-    int mezeraodokraje = 800 / pocethracu / 2;
+    int mezeraodokraje = 1067 / pocethracu / 2;
     int i = 0;
     for (auto t : tanky) {
 	int x = mezeraodokraje + i * 2 * mezeraodokraje;
@@ -142,23 +143,26 @@ static inline void aktualizujVybuchyAKrajinu(Krajina& k, enum Stav& stav)
 	}
     }
 }
-
+bool fullscreen = false;
 int main(int argc, char** argv)
 {
+
     Obrazovka* obrazovka = Obrazovka::instance();
-    obrazovka->inicializuj(800, 600, 0, 0);
+    obrazovka->inicializuj(1067, 600, 0, fullscreen ? SDL_FULLSCREEN : 0);
 
     Krajina k;
     Pozadi pozadi;
 
     Obrazek momentalnizbran;
     bool momentalnizbran_nacten = false;
-
     bool zakladni_menu = true;
     bool vyberove_menu = false;
+    bool nastaveni_menu = false;
     bool hra = false;
     int naboj = 1;
     int pocethracu = 5;
+    int pocettanku;
+
 
     Menu hlavni;
     hlavni.pridej(new Tlacitko("nova hra", [&]() {
@@ -166,17 +170,26 @@ int main(int argc, char** argv)
 	vyberove_menu = true;
     }));
 
+
+    hlavni.pridej(new Tlacitko("nastaveni",[&](){
+        nastaveni_menu = true;
+        zakladni_menu = false;
+    }));
+
+
+
     hlavni.pridej(new Tlacitko("konec hry", []() {
-	SDL_Quit();
-	// žádné return zde – nechť ukončí main
+        SDL_Quit();
+        // žádné return zde – nechť ukončí main
     }));
-
-    hlavni.pridej(new Tlacitko("zmena pozadi", [&]() {
-	pozadi.aktualizuj();
+    Menu nastaveni;
+    nastaveni.pridej(new Tlacitko("fullscreen",[&](){
+        fullscreen = !fullscreen;
+        obrazovka->inicializuj(1067, 600, 0, fullscreen ? SDL_FULLSCREEN : 0);
     }));
-
-    hlavni.pridej(new Tlacitko("zmena terenu", [&]() {
-	k.zmena();
+    nastaveni.pridej(new Tlacitko("zpet",[&](){
+        nastaveni_menu = false;
+        zakladni_menu = true;
     }));
 
     Menu vyberove_na_hru;
@@ -191,6 +204,9 @@ int main(int argc, char** argv)
     }));
     vyberove_na_hru.pridej(new Tlacitko("pocet hracu 4", [&]() {
 	pocethracu = 5;
+    }));
+    vyberove_na_hru.pridej(new Tlacitko("zmena terenu", [&]() {
+        k.zmena();
     }));
 
     vyberove_na_hru.pridej(new Tlacitko("zacit hru", [&]() {
@@ -211,6 +227,10 @@ int main(int argc, char** argv)
 	    momentalnizbran_nacten = true;
 	}
     }));
+    vyberove_na_hru.pridej(new Tlacitko("zpet", [&]() {
+        vyberove_menu = false;
+        zakladni_menu = true;
+    }));
 
     enum Stav stav = nic;
 
@@ -218,7 +238,7 @@ int main(int argc, char** argv)
     bool bezi = true;
     while (bezi) {
 	obrazovka->smaz();
-	int cas1 = SDL_GetTicks();
+    int cas1 = SDL_GetTicks();
 
 	// pohyb a vykreslení pozadí + krajiny
 	pozadi.pohni();
@@ -229,9 +249,13 @@ int main(int argc, char** argv)
 	// menu
 	if (zakladni_menu) {
 	    hlavni.kresli();
-	} else if (vyberove_menu) {
+    }
+    else if (vyberove_menu) {
 	    vyberove_na_hru.kresli();
 	}
+    else if (nastaveni_menu){
+        nastaveni.kresli();
+    }
 
 	// hra
 	if (hra) {
@@ -261,8 +285,8 @@ int main(int argc, char** argv)
 		    bool mazanyJeAktivni = (t == *a);
 		    delete t;
 		    it = tanky.erase(it);
-
-		    if (tanky.empty()) {
+            pocettanku = tanky.size();
+            if (pocettanku = 1 ) {
 			// všichni mrtví – konec hry
 			hra = false;
 			vyberove_menu = false;
@@ -287,9 +311,13 @@ int main(int argc, char** argv)
 		(*it)->kresli(jeAktivni);
 	    }
 	}
-	int cas2 = SDL_GetTicks();
-	SDL_Delay(40-(cas2-cas1));
-	obrazovka->aktualizuj();
+    int cas2 = SDL_GetTicks();
+    if(cas2-cas1 > 17)
+    {}
+    if(cas2-cas1<17)
+    SDL_Delay(17-(cas2-cas1));
+
+    obrazovka->aktualizuj();
 
 	// vstupy z kláves – plynulé (držení)
 	Uint8* key = SDL_GetKeyState(NULL);
@@ -304,9 +332,13 @@ int main(int argc, char** argv)
 	    case SDL_MOUSEBUTTONDOWN:
 		if (zakladni_menu) {
 		    hlavni.klik(event.button.x, event.button.y);
-		} else if (vyberove_menu) {
+        }
+        if (vyberove_menu) {
 		    vyberove_na_hru.klik(event.button.x, event.button.y);
 		}
+        if (nastaveni_menu){
+            nastaveni.klik(event.button.x, event.button.y);
+        }
 		break;
 
 	    case SDL_KEYDOWN:

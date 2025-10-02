@@ -1,3 +1,4 @@
+
 #include "pozadi.h"
 #include <SDL/SDL.h>
 #include <math.h>
@@ -7,7 +8,7 @@
 
 Pozadi::Pozadi() {
     for (int i = 0; i < 20; i++) {
-        nahx[i] = nahoda(799);
+        nahx[i] = nahoda(1066);
         nahy[i] = nahoda(300);
     }
     uhelSlunce = 0.0f;
@@ -51,7 +52,7 @@ void Pozadi::kresli() {
     switch (faze) {
     case DEN:
         barva(135, 206, 250); // světle modrá
-        obdelnik(0, 0, 800, 600);
+        obdelnik(0, 0, 1067, 600);
         barva(255, 255, 0); // slunce
         kruh(x, y, 130);
         break;
@@ -59,11 +60,11 @@ void Pozadi::kresli() {
 
     case NOC:
         barva(10, 10, 30);
-        obdelnik(0, 0, 800, 600);
+        obdelnik(0, 0, 1067, 600);
         for (int o = 0; o < 1500; o++) {
             svitivost = nahoda(255);
             barva(svitivost, svitivost, svitivost);
-            bod(nahoda(800), nahoda(600));
+            bod(nahoda(1067), nahoda(600));
         }
         for (int i = 0; i < 20; i++) {
             svitivostkometa = nahoda(1);
@@ -77,7 +78,7 @@ void Pozadi::kresli() {
     case ZAPAD:
         for(int i = 0;i < 600;i++){
             barva(255,180-i/4,0);
-            cara(0,i,799,i);}
+            cara(0,i,1067,i);}
         barva(255, 130, 0);
         kruh(x,y,130);
         barva(255, 150, 0);
