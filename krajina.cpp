@@ -9,15 +9,15 @@ Krajina::Krajina()
 	typ = rand() % 3;
 	if(typ == 0)
 	{
-        kopec(0, nahoda(400) + 200,800, nahoda(400) + 200);
+        kopec(0, nahoda(400) + 200,1067, nahoda(400) + 200);
 	}
 	if (typ ==1)
 	{
-        hory(0, nahoda(400) + 200,800, nahoda(400) + 200);
+        hory(0, nahoda(400) + 200,1067, nahoda(400) + 200);
 	}
 	if (typ == 2)
 	{
-        poust(0,nahoda(400)+200,800,nahoda(400)+200);
+        poust(0,nahoda(400)+200,1067,nahoda(400)+200);
 	}
 }
 
@@ -122,7 +122,7 @@ void Krajina::kresli()
 	if(typ == 1) barva(130,130,130);
 	if(typ == 2) barva(223,226,127);
 
-	for (int x = 0; x < 799; x ++)
+    for (int x = 0; x < 1067; x ++)
 		for (int y = 0; y < 599; y++)
 		{
 			if (mapa [x][y] == 1)
@@ -141,15 +141,15 @@ void Krajina::zmena()
 	}
 	if(typ == 0)
 	{
-		kopec(0, nahoda(400) + 200,799, nahoda(400) + 200);
+        kopec(0, nahoda(400) + 200,1067, nahoda(400) + 200);
 	}
 	if (typ ==1)
 	{
-		hory(0, nahoda(400) + 200,799, nahoda(400) + 200);
+        hory(0, nahoda(400) + 200,1067, nahoda(400) + 200);
 	}
 	if (typ == 2)
 	{
-		poust(0,nahoda(400)+200,799,nahoda(400)+200);
+        poust(0,nahoda(400)+200,1067,nahoda(400)+200);
 	}
 }
 
@@ -160,7 +160,7 @@ bool Krajina::jeHlina(int x, int y)
 {
 	if(y > 599) return true;
 
-	if(x < 0 && y < 600 || x > 799 && y < 600 || y < 0)
+    if(x < 0 && y < 600 || x > 1066 && y < 600 || y < 0)
 		return false;
 
 	return mapa [x][y] == 1;
@@ -169,7 +169,7 @@ bool Krajina::jeHlina(int x, int y)
 //zjistuje vysku krajiny na dane x souradnici
 int Krajina::kdeJeHlina(int x)
 {
-	if(x<800)
+    if(x<1067)
 	{
 	for (int y = 0; y < 600; y++)
 	{
@@ -183,7 +183,7 @@ int Krajina::kdeJeHlina(int x)
 // zmeni dany bod v mape na 0 (tzn. pozadi)
 void Krajina::vyzobni(int x, int y)
 {
-	if(x >= 0 && x < 800 && y >= 0 && y < 600)
+    if(x >= 0 && x < 1067 && y >= 0 && y < 600)
 		mapa [x][y] = 0;
 }
 
@@ -191,7 +191,7 @@ void Krajina::vyzobni(int x, int y)
 bool Krajina::padej()
 {
 	bool pohnuto = false;
-	for (int x = 0; x < 799; x++)
+    for (int x = 0; x < 1066; x++)
 	{
 		for (int y = 598; y >= 0; y--)
 		{

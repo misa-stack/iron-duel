@@ -19,6 +19,16 @@ public:
 
 
 };
+class Ukazatel
+{
+public:
+    Ukazatel(const char* nazev, int & hodnota);
+    void kresli(int x1, int y1, int x2, int y2);
+    const char* nazev;
+    int& hodnota;
+    Pismo cislapismenamalaivelka;
+
+};
 
 class Menu
 {
