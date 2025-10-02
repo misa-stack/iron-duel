@@ -161,8 +161,6 @@ int main(int argc, char** argv)
     bool hra = false;
     int naboj = 1;
     int pocethracu = 5;
-    int pocettanku;
-
 
     Menu hlavni;
     hlavni.pridej(new Tlacitko("nova hra", [&]() {
@@ -193,21 +191,17 @@ int main(int argc, char** argv)
     }));
 
     Menu vyberove_na_hru;
-    vyberove_na_hru.pridej(new Tlacitko("pocet hracu 1", [&]() {
-	pocethracu = 2;
+    vyberove_na_hru.pridej(new Tlacitko("mene hracu", [&]() {
+        if (pocethracu > 2) pocethracu--;
     }));
-    vyberove_na_hru.pridej(new Tlacitko("pocet hracu 2", [&]() {
-	pocethracu = 3;
-    }));
-    vyberove_na_hru.pridej(new Tlacitko("pocet hracu 3", [&]() {
-	pocethracu = 4;
-    }));
-    vyberove_na_hru.pridej(new Tlacitko("pocet hracu 4", [&]() {
-	pocethracu = 5;
+
+    vyberove_na_hru.pridej(new Tlacitko("vice hracu", [&]() {
+        if (pocethracu < 5) pocethracu++;
     }));
     vyberove_na_hru.pridej(new Tlacitko("zmena terenu", [&]() {
         k.zmena();
     }));
+    Ukazatel* ukazatelHracu = new Ukazatel("Pocet hracu", pocethracu);
 
     vyberove_na_hru.pridej(new Tlacitko("zacit hru", [&]() {
 	hra = true;
@@ -252,6 +246,9 @@ int main(int argc, char** argv)
     }
     else if (vyberove_menu) {
 	    vyberove_na_hru.kresli();
+        pocethracu--;
+        ukazatelHracu->kresli(900,20,1050,70);
+        pocethracu++;
 	}
     else if (nastaveni_menu){
         nastaveni.kresli();
@@ -285,8 +282,7 @@ int main(int argc, char** argv)
 		    bool mazanyJeAktivni = (t == *a);
 		    delete t;
 		    it = tanky.erase(it);
-            pocettanku = tanky.size();
-            if (pocettanku = 1 ) {
+            if (tanky.empty()) {
 			// všichni mrtví – konec hry
 			hra = false;
 			vyberove_menu = false;

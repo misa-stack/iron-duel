@@ -27,7 +27,21 @@ void Tlacitko::kresli(int x1, int y1, int x2, int y2)
 	cislapismenamalaivelka.umisti(x1+5,y1);
 	cislapismenamalaivelka.kresli(nazev);
 }
+Ukazatel::Ukazatel(const char* nazev,int& hodnota): nazev(nazev), hodnota(hodnota)
+{
+    cislapismenamalaivelka.nacti("cislapismenamalaivelka.png", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+}
+void Ukazatel::kresli(int x1, int y1, int x2, int y2)
+{
 
+    barva(BILA);
+    obdelnik(x1,y1,x2,y2);
+
+    cislapismenamalaivelka.umisti(x1+5,y1);
+    char text[20];
+    sprintf(text, "%s: %d", nazev, hodnota);
+    cislapismenamalaivelka.kresli(text);
+}
 Menu::Menu()
 {
 	prvnitlacitko=true;
