@@ -13,7 +13,7 @@ extern std::list<strela*>::iterator s;
 
 strela::strela(float uhel, float prach, float x,float y): x(x), y(y)
 {
-	ay = 0.1;
+	ay = 0.3;
 	//zada rychlost strely
 	vel=30;
 	vx=prach*cos(uhel);
