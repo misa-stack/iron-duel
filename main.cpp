@@ -10,6 +10,8 @@
 #include "vybuch.h"
 #include "hopik.h"
 #include "bomba.h"
+#include "ultimatnizbran.h"
+
 
 void kometa(int x, int y, int r)
 {
@@ -70,6 +72,9 @@ static inline void vykresliIkonuNaboje(int naboj)
 	kruh(730, 15, 5);
 	kruh(770, 15, 5);
 	break;
+    case 5:
+        break;
+
     }
 }
 
@@ -105,6 +110,10 @@ static inline void vystrelNaboj(int naboj, Tank* t)
     case 4:
 	strely.push_back(new bomba(t->uhel, sila, ux, uy));
 	break;
+    case 5:
+    strely.push_back(new ultimatnizbran(t->uhel, sila, ux, uy));
+
+
     }
 }
 
@@ -351,6 +360,10 @@ int main(int argc, char** argv)
 		case SDLK_4:
 		case SDLK_KP4:
 		    naboj = 4; break;
+        case SDLK_KP5:
+        case SDLK_5:
+            naboj = 5; break;
+
 
 		case SDLK_ESCAPE:
 		    bezi = false;

@@ -17,5 +17,7 @@ strela.cpp
 strela.h
 tank.cpp
 tank.h
+ultimatnizbran.cpp
+ultimatnizbran.h
 vybuch.cpp
 vybuch.h

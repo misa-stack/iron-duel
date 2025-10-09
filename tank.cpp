@@ -46,17 +46,16 @@ void Tank::kresli(bool aktivni)
 			cara(x-20, y-45-a, x-20+prach, y-45-a);
 		}
 	}
-
-	else //kresli hp bar
 	{
 		barva(CERVENA);
 		for (int a=0; a<5; a++)
 		{
-			cara(x-20, y-45-a, x-20+zivoty/2.5, y-45-a);
-		}
-	}
-}
 
+            cara(x + rk  + a + 4, y +10  , x + rk  + a +4, y + 10 - zivoty / 2.5);
+        }
+
+}
+}
 void Tank::naloz()
 {
 
