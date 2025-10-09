@@ -11,7 +11,7 @@ bool hopik::pohni(Krajina *k)
 	//hejbu se strelou
 	x= x + vx;
 	y= y + vy;
-	vy= vy+ ay;
+    vy= vy+ ay * 0,4;
 	if(k->jeHlina(x, y))
 	{
 		float x1 = x-10;
@@ -45,5 +45,36 @@ bool hopik::pohni(Krajina *k)
 		}
 	}
 
-	return false;
-}
+        x = x + vx;
+        y = y + vy;
+        vy = vy + ay;
+
+        if (x < 0)
+        {
+            x = 0;
+            vx = -vx  ;
+        }
+
+        if (x > 1067)
+        {
+            x = 1067;
+            vx = -vx ;
+        }
+
+        if (y < 0)
+        {
+            y = 0;
+            vy = -vy ;
+        }
+
+        if (y > 600)
+        {
+            y = 600;
+            vy = -vy ;
+            pocet++;
+            if (pocet > 3)
+                return true;
+        }
+
+        return false;
+    }
