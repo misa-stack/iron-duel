@@ -18,7 +18,7 @@ void kometa(int x, int y, int r)
     kruh(x, y, r);
 }
 
-const int max_pocet_hracu = 10;
+const int max_pocet_hracu = 9;
 
 std::list<Tank*> tanky;
 std::list<Tank*>::iterator a;
@@ -291,7 +291,7 @@ int main(int argc, char** argv)
 		if (t->zivoty <= 0) {
 		    vybuchy.push_back(new vybuch(t->x, t->y, 40));
 		    bool mazanyJeAktivni = (t == *a);
-		    delete t;
+		    t->penize += (10 - tanky.size())*1000;
 		    it = tanky.erase(it);
             if (tanky.empty()) {
 			// všichni mrtví – konec hry
