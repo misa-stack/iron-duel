@@ -7,6 +7,7 @@ class Tank
 public:
 	float x, y, uhel, rk, o, r, g, b, prach;
 	int zivoty = 100;
+	int penize = 0;
 	Tank();
 	void kresli(bool aktivni);
 	void vlevo();

@@ -16,8 +16,11 @@ void kometa(int x, int y, int r)
     kruh(x, y, r);
 }
 
+const int max_pocet_hracu = 10;
+
 std::list<Tank*> tanky;
 std::list<Tank*>::iterator a;
+Tank* tanky_penize[max_pocet_hracu];
 std::list<strela*> strely;
 std::list<strela*>::iterator s;
 std::list<vybuch*> vybuchy;
@@ -152,7 +155,6 @@ int main(int argc, char** argv)
 
     Krajina k;
     Pozadi pozadi;
-
     Obrazek momentalnizbran;
     bool momentalnizbran_nacten = false;
     bool zakladni_menu = true;
@@ -196,7 +198,7 @@ int main(int argc, char** argv)
     }));
 
     vyberove_na_hru.pridej(new Tlacitko("vice hracu", [&]() {
-        if (pocethracu < 5) pocethracu++;
+	if (pocethracu < max_pocet_hracu) pocethracu++;
     }));
     vyberove_na_hru.pridej(new Tlacitko("zmena terenu", [&]() {
         k.zmena();
