@@ -7,12 +7,13 @@
 #include "krajina.h"
 #include "strela.h"
 #include "raketa.h"
+#include "main.h"
 
 ultimatnizbran::ultimatnizbran(float uhel, float prach, float x, float y): strela(uhel, prach, x, y)
 {
 
 }
-extern std::list<strela*> strely;
+
 bool ultimatnizbran::pohni(Krajina *k)  {
 
     //hejbu se strelou
@@ -23,7 +24,7 @@ bool ultimatnizbran::pohni(Krajina *k)  {
     {
         for (int c=0; c<20; c++)
         {
-            strely.push_back(new raketa(-nahoda(3.14), 5, x-vx, y-vy));
+            hra->strely.push_back(new raketa(-nahoda(3.14), 5, x-vx, y-vy));
         }
         float x1 = x-10;
         float y1 = k->kdeJeHlina(x1);
@@ -66,7 +67,7 @@ bool ultimatnizbran::pohni(Krajina *k)  {
         vx = -vx  ;
         for (int c=0; c<40; c++)
         {
-            strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
+            hra->strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
         }
         return true;
     }
@@ -77,7 +78,7 @@ bool ultimatnizbran::pohni(Krajina *k)  {
         vx = -vx ;
         for (int c=0; c<40; c++)
         {
-            strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
+            hra->strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
         }
         return true;
     }
@@ -88,7 +89,7 @@ bool ultimatnizbran::pohni(Krajina *k)  {
         vy = -vy ;
         for (int c=0; c<40; c++)
         {
-            strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
+            hra->strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
         }
         return true;
     }
@@ -99,7 +100,7 @@ bool ultimatnizbran::pohni(Krajina *k)  {
         vy = -vy ;
         for (int c=0; c<40; c++)
         {
-            strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
+            hra->strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
         }
         return true;
     }

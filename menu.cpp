@@ -8,7 +8,7 @@
 #include "vybuch.h"
 #include <list>
 #include <functional>
-;
+
 
 
 Tlacitko::Tlacitko(const char* nazev, std::function<void()> funkce)

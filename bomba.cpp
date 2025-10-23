@@ -1,11 +1,13 @@
-#include "bomba.h"
 #include <SDL/SDL.h>
-#include "pozadi.h"
+
 #include "grafika.h"
+#include "pozadi.h"
+#include "hra.h"
 #include "krajina.h"
 #include "strela.h"
+#include "bomba.h"
 
-extern std::list<strela*> strely;
+extern Hra hra;
 
 bomba::bomba(float uhel, float prach, float x,float y): strela(uhel, prach, x, y)
 {
@@ -26,7 +28,7 @@ bool bomba::pohni(Krajina *k)
 	{
 		for (int c=0; c<40; c++)
 		{
-			strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
+			hra.strely.push_back(new strela(-nahoda(3.14), 5, x-vx, y-vy));
 		}
 		return true;
 	}
