@@ -133,7 +133,8 @@ static inline bool aktualizujStrelyAKolize(Krajina& k, enum Stav& stav)
             delete pr;
             s = strely.erase(s);
             necoVybusne = true;
-        } else {
+        }
+        else {
             ++s;
         }
     }
@@ -280,6 +281,7 @@ int main(int argc, char** argv)
             // výbuchy a padání terénu
             // střely a jejich kolize
             aktualizujStrelyAKolize(k, stav);
+            aktualizujVybuchyAKrajinu(k, stav);
 
             // vyřaď mrtvé tanky (vytvoř výbuch, přepni hráče korektně)
             for (auto it = tanky.begin(); it != tanky.end();) {
@@ -304,8 +306,8 @@ int main(int argc, char** argv)
                         break;
                     }
 
-                    if (mazanyJeAktivni) {
-                        a = tanky.begin(); // posuň aktivního na validní
+                        if (mazanyJeAktivni) {
+                            a = tanky.begin(); // posuň aktivního na validní
                     }
                 } else {
                     ++it;
