@@ -18,8 +18,11 @@ void kometa(int x, int y, int r)
     kruh(x, y, r);
 }
 
+const int max_pocet_hracu = 9;
+
 std::list<Tank*> tanky;
 std::list<Tank*>::iterator a;
+Tank* tanky_penize[max_pocet_hracu];
 std::list<strela*> strely;
 std::list<strela*>::iterator s;
 std::list<vybuch*> vybuchy;
@@ -168,6 +171,7 @@ int main(int argc, char** argv)
     Menu ekonomicke;
 
 
+
     Obrazek momentalnizbran;
     bool momentalnizbran_nacten = false;
     int naboj = 1;
@@ -213,7 +217,7 @@ int main(int argc, char** argv)
     }));
 
     vyberove_na_hru.pridej(new Tlacitko("vice hracu", [&]() {
-        if (pocethracu < 5) pocethracu++;
+	if (pocethracu < max_pocet_hracu) pocethracu++;
     }));
     vyberove_na_hru.pridej(new Tlacitko("zmena terenu", [&]() {
         k.zmena();
@@ -274,8 +278,6 @@ int main(int argc, char** argv)
             vykresliIkonuNaboje(naboj);
 
             // výbuchy a padání terénu
-            aktualizujVybuchyAKrajinu(k, stav);
-
             // střely a jejich kolize
             aktualizujStrelyAKolize(k, stav);
 
