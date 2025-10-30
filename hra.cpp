@@ -42,8 +42,10 @@ void Hra::kresli()
                 if (t->zivoty <= 0) {
                     vybuchy.push_back(new vybuch(t->x, t->y, 40));
                     bool mazanyJeAktivni = (t == *a);
-                    delete t;
-                    it = tanky.erase(it);
+		    t->penize += 100;
+		    //delete t;
+		    //1000-pocethracu*100+klk_hracu_uz_umrelo*100
+		     it = tanky.erase(it);
                     if (tanky.empty()) {
                         // všichni mrtví – konec hry
                         aktivni = &ekonomicke;
@@ -86,9 +88,21 @@ void Hra::kresli()
 void Hra::nova()
 {
 	// založení tanků
-	for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++) {
-		tanky.push_back(new Tank);
+	if (kolo == 0){
+		for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++) {
+			Tank* nt = new Tank;
+			tanky.push_back(nt);
+			tanky_penize.push_back(nt);
+		}
 	}
+	else{
+		for (auto it = tanky_penize.begin(); it != tanky_penize.end(); ++it) {
+			(*it)->zivoty = 100;
+			tanky.push_back(*it);
+		}
+	}
+
+
 	a = tanky.begin();
 	rozmistitTanky(k, pocethracu);
 }

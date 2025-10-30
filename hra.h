@@ -37,7 +37,7 @@ public:
 	
 	std::list<Tank*> tanky;
 	std::list<Tank*>::iterator a;
-	Tank* tanky_penize[max_pocet_hracu];
+	std::list<Tank*> tanky_penize;
 	std::list<strela*> strely;
 	std::list<strela*>::iterator s;
 	std::list<vybuch*> vybuchy;
