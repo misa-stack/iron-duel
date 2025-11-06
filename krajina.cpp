@@ -21,24 +21,6 @@ Krajina::Krajina()
 	}
 }
 
-// void terencara(int x1, int y1, int x2, int y2)
-// {
-//     double rozptyl = (x2 - x1)/ 3;
-//     int xs = (x1 + x2)/2;
-//     int ys = (y1 + y2)/2 + nahoda(rozptyl) - rozptyl/2;
-
-//     if(x2 - x1 < 10)
-//     {
-
-//         cara(x1,y1,xs,ys);
-//         cara(xs,ys,x2,y2);
-//     }
-//     else
-//     {
-//         terencara(x1,y1,xs,ys);
-//         terencara(xs,ys,x2,y2);
-//     }
-// }
 
 //perkresluje vygenerovanou krajinu do 2d pole "mapa", abychom presne vedeli, na kterych bodech je a neni krajina
 void Krajina::mojecara(int x1, int y1, int x2, int y2)
@@ -160,9 +142,9 @@ bool Krajina::jeHlina(int x, int y)
 {
 	if(y > 599) return true;
 
-    if(x < 0 && y < 600 || x > 1066 && y < 600 || y < 0)
+    if(x < 0 && y < 600 || x > 1066 && y < 600 || y < 0){
 		return false;
-
+    }
 	return mapa [x][y] == 1;
 }
 

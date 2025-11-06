@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 	aktivni = &hlavni;
 	
 	ekonomicke.pridej(new Tlacitko("pokracovat ve hre",[&](){
-		aktivni = NULL;
+        aktivni = NULL;
 		
 		hra->nova();
 	}));
