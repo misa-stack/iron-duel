@@ -42,13 +42,16 @@ void Hra::kresli()
                 if (t->zivoty <= 0) {
                     vybuchy.push_back(new vybuch(t->x, t->y, 40));
                     bool mazanyJeAktivni = (t == *a);
-		    t->penize += 100;
-		    //delete t;
-		    //1000-pocethracu*100+klk_hracu_uz_umrelo*100
+		    t->penize += 1000-pocethracu*100+(pocethracu-tanky.size())*100;
+		    //delete t;		    
 		     it = tanky.erase(it);
-                    if (tanky.empty()) {
-                        // všichni mrtví – konec hry
-                        aktivni = &ekonomicke;
+		    if (tanky.size()==1) {
+			// Máme vítěze – konec hry
+			it = tanky.begin();
+			t = *it;
+			t->penize += 1000-pocethracu*100+(pocethracu-tanky.size())*100;
+			it = tanky.erase(it);
+			aktivni = &ekonomicke;
                         Koneckola->kresli(450,250,550,300);
                         vybuchy.clear();
                         strely.clear();
