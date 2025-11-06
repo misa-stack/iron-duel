@@ -4,9 +4,12 @@ grafika.cpp
 grafika.h
 hopik.cpp
 hopik.h
+hra.cpp
+hra.h
 krajina.cpp
 krajina.h
 main.cpp
+main.h
 menu.cpp
 menu.h
 pozadi.cpp

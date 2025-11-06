@@ -47,11 +47,12 @@ void Hra::kresli()
                     if (tanky.empty()) {
                         // všichni mrtví – konec hry
                         aktivni = &ekonomicke;
-                        Koneckola->kresli(450,250,550,300);
                         vybuchy.clear();
                         strely.clear();
+                        Koneckola->kresli(450,250,550,300);
+
                         k.zmena();
-                        ++kolo;
+                        kolo++;
                         if (kolo == 3){
                             kolo = 0;
                             aktivni = &hlavni;
