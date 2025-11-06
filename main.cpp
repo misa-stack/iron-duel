@@ -113,7 +113,7 @@ int main(int argc, char** argv)
 		// události
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
-			switch (event.type) {
+				switch (event.type) {
 			case SDL_MOUSEBUTTONDOWN:
 				if(aktivni)
 					aktivni->klik(event.button.x,event.button.y);
