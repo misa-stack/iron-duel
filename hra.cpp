@@ -11,6 +11,7 @@ Hra::Hra()
 {
 	Koneckola = new Ukazatel("Konec kola", kolo);
 	ukazatelHracu = new Ukazatel("Pocet hracu", pocethracu);
+    pocetpenez = new Ukazatel("penize:",pocet_penez);
 }
 
 void Hra::kresli()
@@ -20,12 +21,15 @@ void Hra::kresli()
         pozadi.aktualizuj();
         pozadi.kresli();
         k.kresli();
+        jemno_tanku = 0;
 
 	// hra
         if (aktivni == NULL) {
             // korekce pozic tanků na terén
             // (pro případ, že terén padá nebo se změnil)
             for (auto t : tanky) {
+                jemno_tanku++;
+                t->jmeno = jemno_tanku;
                 t->umisti(t->x, k.kdeJeHlina(t->x));
             }
 
@@ -42,8 +46,8 @@ void Hra::kresli()
                 if (t->zivoty <= 0) {
                     vybuchy.push_back(new vybuch(t->x, t->y, 40));
                     bool mazanyJeAktivni = (t == *a);
-		    t->penize += 1000-pocethracu*100+(pocethracu-tanky.size())*100;
-		    //delete t;		    
+		    //delete t;
+		    //1000-pocethracu*100+klk_hracu_uz_umrelo*100
 		     it = tanky.erase(it);
 		    if (tanky.size()==1) {
 			// Máme vítěze – konec hry
@@ -83,13 +87,19 @@ void Hra::kresli()
         else{
         aktivni->kresli();
         if (aktivni == &vyberove_na_hru) {
-            vyberove_na_hru.kresli();
             pocethracu--;
             ukazatelHracu->kresli(900,20,1050,70);
             pocethracu++;}
-        }	
-}
 
+        if (aktivni == &ekonomicke){
+
+            pocet_penez= (*a)->penize;
+            pocetpenez->kresli(850, 100, 1050, 150);
+
+
+
+            }
+        }}
 void Hra::nova()
 {
 	// založení tanků
@@ -263,3 +273,5 @@ void Hra::vykresliIkonuNaboje(int naboj)
 
     }
 }
+
+

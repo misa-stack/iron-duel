@@ -40,11 +40,13 @@ int main(int argc, char** argv)
 
 	aktivni = &hlavni;
 	
-	ekonomicke.pridej(new Tlacitko("pokracovat ve hre",[&](){
+    ekonomicke.pridej(new Tlacitko("pokracovat",[&](){
         aktivni = NULL;
 		
 		hra->nova();
 	}));
+
+
 	
 	hlavni.pridej(new Tlacitko("nova hra", [&]() {
 		aktivni = &vyberove_na_hru;
@@ -112,7 +114,7 @@ int main(int argc, char** argv)
 		
 		// události
 		SDL_Event event;
-		while (SDL_PollEvent(&event)) {
+        while (SDL_PollEvent(&event)) {
 				switch (event.type) {
 			case SDL_MOUSEBUTTONDOWN:
 				if(aktivni)
