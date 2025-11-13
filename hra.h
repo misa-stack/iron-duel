@@ -31,10 +31,13 @@ public:
 	int naboj = 1;
 	int kolo = 0;
 	int pocethracu = 5;
+    int pocet_penez;
+
 
 	Ukazatel* Koneckola;
 	Ukazatel* ukazatelHracu;
-	
+    Ukazatel* pocetpenez;
+
 	std::list<Tank*> tanky;
 	std::list<Tank*>::iterator a;
 	std::list<Tank*> tanky_penize;

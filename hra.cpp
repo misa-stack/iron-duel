@@ -9,137 +9,148 @@
 
 Hra::Hra()
 {
-	Koneckola = new Ukazatel("Konec kola", kolo);
-	ukazatelHracu = new Ukazatel("Pocet hracu", pocethracu);
+    Koneckola = new Ukazatel("Konec kola", kolo);
+    ukazatelHracu = new Ukazatel("Pocet hracu", pocethracu);
+    pocetpenez = new Ukazatel("penize:",pocet_penez);
+
 }
 
 void Hra::kresli()
 {
-	// pohyb a vykreslení pozadí + krajiny
-        pozadi.pohni();
-        pozadi.aktualizuj();
-        pozadi.kresli();
-        k.kresli();
+    // pohyb a vykreslení pozadí + krajiny
+    pozadi.pohni();
+    pozadi.aktualizuj();
+    pozadi.kresli();
+    k.kresli();
 
-	// hra
-        if (aktivni == NULL) {
-            // korekce pozic tanků na terén
-            // (pro případ, že terén padá nebo se změnil)
-            for (auto t : tanky) {
-                t->umisti(t->x, k.kdeJeHlina(t->x));
-            }
+    // hra
+    if (aktivni == NULL) {
+        // korekce pozic tanků na terén
+        // (pro případ, že terén padá nebo se změnil)
+        for (auto t : tanky) {
+            t->umisti(t->x, k.kdeJeHlina(t->x));
+        }
 
-            vykresliIkonuNaboje(naboj);
+        vykresliIkonuNaboje(naboj);
 
-            // výbuchy a padání terénu
-            // střely a jejich kolize
-            aktualizujStrelyAKolize(k, stav);
-            aktualizujVybuchyAKrajinu(k, stav);
+        // výbuchy a padání terénu
+        // střely a jejich kolize
+        aktualizujStrelyAKolize(k, stav);
+        aktualizujVybuchyAKrajinu(k, stav);
 
-            // vyřaď mrtvé tanky (vytvoř výbuch, přepni hráče korektně)
-            for (auto it = tanky.begin(); it != tanky.end();) {
-                Tank* t = *it;
-                if (t->zivoty <= 0) {
-                    vybuchy.push_back(new vybuch(t->x, t->y, 40));
-                    bool mazanyJeAktivni = (t == *a);
-		    t->penize += 1000-pocethracu*100+(pocethracu-tanky.size())*100;
-		    //delete t;		    
-		     it = tanky.erase(it);
-		    if (tanky.size()==1) {
-			// Máme vítěze – konec hry
-			it = tanky.begin();
-			t = *it;
-			t->penize += 1000-pocethracu*100+(pocethracu-tanky.size())*100;
-			it = tanky.erase(it);
-			aktivni = &ekonomicke;
-                        Koneckola->kresli(450,250,550,300);
-                        vybuchy.clear();
-                        strely.clear();
-                        Koneckola->kresli(450,250,550,300);
+        // vyřaď mrtvé tanky (vytvoř výbuch, přepni hráče korektně)
+        for (auto it = tanky.begin(); it != tanky.end();) {
+            Tank* t = *it;
+            if (t->zivoty <= 0) {
+                vybuchy.push_back(new vybuch(t->x, t->y, 40));
+                bool mazanyJeAktivni = (t == *a);
+                t->penize += 1000-pocethracu*100+(pocethracu-tanky.size())*100;
+                //delete t;
+                it = tanky.erase(it);
+                if (tanky.size()==1) {
+                    // Máme vítěze – konec hry
+                    it = tanky.begin();
+                    t = *it;
+                    t->penize += 1000-pocethracu*100+(pocethracu-tanky.size())*100;
+                    it = tanky.erase(it);
+                    aktivni = &ekonomicke;
+                    Koneckola->kresli(450,250,550,300);
+                    vybuchy.clear();
+                    strely.clear();
+                    Koneckola->kresli(450,250,550,300);
 
-                        k.zmena();
-                        kolo++;
-                        if (kolo == 3){
-                            kolo = 0;
-                            aktivni = &hlavni;
-                        }
-                        break;
+                    k.zmena();
+                    kolo++;
+                    if (kolo == 3){
+                        kolo = 0;
+                        aktivni = &hlavni;
                     }
-
-                        if (mazanyJeAktivni) {
-                            a = tanky.begin(); // posuň aktivního na validní
-                    }
-                } else {
-                    ++it;
+                    break;
                 }
-            }
 
-            // vykresli tanky (aktivní = zvýrazněný)
-            for (auto it = tanky.begin(); it != tanky.end(); ++it) {
-                bool jeAktivni = ((*it) == (*a));
-                (*it)->kresli(jeAktivni);
+                if (mazanyJeAktivni) {
+                    a = tanky.begin(); // posuň aktivního na validní
+                }
+            } else {
+                ++it;
             }
         }
-        else{
+
+        // vykresli tanky (aktivní = zvýrazněný)
+        for (auto it = tanky.begin(); it != tanky.end(); ++it) {
+            bool jeAktivni = ((*it) == (*a));
+            (*it)->kresli(jeAktivni);
+        }
+    }
+    else{
         aktivni->kresli();
         if (aktivni == &vyberove_na_hru) {
             vyberove_na_hru.kresli();
             pocethracu--;
             ukazatelHracu->kresli(900,20,1050,70);
             pocethracu++;}
-        }	
-}
+        if (aktivni == &ekonomicke){
 
+            pocet_penez= (*a)->penize;
+            pocetpenez->kresli(850, 100, 1050, 150);
+
+
+        }
+    }}   if (aktivni == &ekonomicke){
+
+    pocet_penez= (*a)->penize;
+    pocetpenez->kresli(850, 100, 1050, 150);
+}
 void Hra::nova()
 {
-	// založení tanků
-	if (kolo == 0){
-		for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++) {
-			Tank* nt = new Tank;
-			tanky.push_back(nt);
-			tanky_penize.push_back(nt);
-		}
-	}
-	else{
-		for (auto it = tanky_penize.begin(); it != tanky_penize.end(); ++it) {
-			(*it)->zivoty = 100;
-			tanky.push_back(*it);
-		}
-	}
+    // založení tanků
+    if (kolo == 0){
+        for (int vytvarim = 0; vytvarim < pocethracu; vytvarim++) {
+            Tank* nt = new Tank;
+            tanky.push_back(nt);
+            tanky_penize.push_back(nt);
+        }
+    }
+    else{
+        for (auto it = tanky_penize.begin(); it != tanky_penize.end(); ++it) {
+            (*it)->zivoty = 100;
+            tanky.push_back(*it);
+        }
+    }
 
 
-	a = tanky.begin();
-	rozmistitTanky(k, pocethracu);
+    a = tanky.begin();
+    rozmistitTanky(k, pocethracu);
 }
 
 void Hra::klavesa(unsigned int sym)
 {
-	switch(sym)
-	{
-	case SDLK_1:
-	case SDLK_KP1:
-		naboj = 1; break;
-	case SDLK_2:
-	case SDLK_KP2:
-		naboj = 2; break;
-	case SDLK_3:
-	case SDLK_KP3:
-		naboj = 3; break;
-	case SDLK_4:
-	case SDLK_KP4:
-		naboj = 4; break;
-	case SDLK_KP5:
-	case SDLK_5:
-		naboj = 5; break;
-	case SDLK_SPACE:
-		if (aktivni == NULL && !tanky.empty()) {
-			vystrelNaboj(naboj, *a);
-			++a;
-			if (a == tanky.end()) a = tanky.begin();
-		}
-		break;
-		
-	}
+    switch(sym)
+    {
+    case SDLK_1:
+    case SDLK_KP1:
+        naboj = 1; break;
+    case SDLK_2:
+    case SDLK_KP2:
+        naboj = 2; break;
+    case SDLK_3:
+    case SDLK_KP3:
+        naboj = 3; break;
+    case SDLK_4:
+    case SDLK_KP4:
+        naboj = 4; break;
+    case SDLK_KP5:
+    case SDLK_5:
+        naboj = 5; break;
+    case SDLK_SPACE:
+        if (aktivni == NULL && !tanky.empty()) {
+            vystrelNaboj(naboj, *a);
+            ++a;
+            if (a == tanky.end()) a = tanky.begin();
+        }
+        break;
+
+    }
 }
 void Hra::zpracujKlavesyTanku(const Uint8* key, Tank* t)
 {
