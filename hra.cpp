@@ -96,11 +96,13 @@ void Hra::kresli()
 
 
         }
-    }}   if (aktivni == &ekonomicke){
+    }
+    if (aktivni == &ekonomicke){
 
     pocet_penez= (*a)->penize;
     pocetpenez->kresli(850, 100, 1050, 150);
-}
+    }}
+
 void Hra::nova()
 {
     // založení tanků
