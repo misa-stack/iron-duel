@@ -95,7 +95,7 @@ void Menu::kresli(){
 	pocettlacitek = tlacitka.size();
 	for (auto t = tlacitka.begin(); t != tlacitka.end(); ++t)
 	{
-        /*
+
         if(pocettlacitek > 8)
 			pocettlacitek=8;
 		vzdalenostoddelenitlacitek =(600 - (velikosttlacitekvyska * pocettlacitek))/ (pocettlacitek+1);
@@ -106,12 +106,8 @@ void Menu::kresli(){
 		if ( i == 8){
 			y = vzdalenostoddelenitlacitek ;
             x = 300;
-        }*/
-        if (pocettlacitek % 8 == 0)
-        {
-            rada++;
-
         }
+
 
 		(*t)->kresli(x, y, x + velikosttlaciteksirka, y + velikosttlacitekvyska);
 		i++;
