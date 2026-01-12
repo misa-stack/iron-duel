@@ -10,9 +10,3 @@ Iron Duel is a reimagining of the classic "Scorched Earth" artillery mechanic. T
 - **Ballistics Solver:** Custom differential equations to account for drag coefficients, wind vectors, and gravitational constants.
 - **Rendering:** Batch-rendering of projectiles to minimize draw calls.
 
-### 🚀 INSTALLATION
-```bash
-git clone [https://github.com/yourusername/iron-duel.git](https://github.com/yourusername/iron-duel.git)
-cd iron-duel
-make build
-./iron-duel
