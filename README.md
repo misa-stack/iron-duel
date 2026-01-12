@@ -10,3 +10,15 @@ Iron Duel is a reimagining of the classic "Scorched Earth" artillery mechanic. T
 - **Ballistics Solver:** Custom differential equations to account for drag coefficients, wind vectors, and gravitational constants.
 - **Rendering:** Batch-rendering of projectiles to minimize draw calls.
 
+## 🛠 Installation & Setup
+
+### Prerequisites
+This project requires a C++ compiler (GCC/Clang) and the **SDL2** development library.
+
+#### 🐧 Arch Linux
+```bash
+sudo pacman -S base-devel sdl2
+
+git clone https://github.com/misa-stack/ironduel.git
+cd iron-duel
+g++ IronDuel.cpp -o ironduel -lSDL2
